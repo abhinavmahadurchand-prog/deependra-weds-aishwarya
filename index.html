@@ -29,18 +29,14 @@
   /* hero scroll scene: naam upar jaate hain, mandir neeche se uthta hai */
   #heroWrap{position:relative;height:185vh}
   #hero{position:sticky;top:0;height:100vh;min-height:520px;background:#dbe9f2}
-  /* alag-alag kati hui tasveerein (layers) jo scroll par hilti hain */
-  .part{position:absolute;pointer-events:none;will-change:transform}
-  .part img{display:block;height:100%;width:auto}
-  #hero .temple{left:50%;bottom:-3vh;height:58vh;z-index:1;transform-origin:50% 100%}
-  #hero .bg{background-image:url(images/hero-sky.jpg);background-position:center bottom;inset:-30% 0 0 0;transform-origin:50% 100%}
+  #hero .bg{background-image:url(images/hero.jpg);background-position:center bottom;inset:-30% 0 0 0;transform-origin:50% 100%}
   .hero-text{will-change:transform}
   #garland{position:absolute;top:0;left:0;width:100%;height:120px;z-index:3}
   .bell{position:absolute;top:0;width:62px;z-index:4;transform-origin:50% 0;animation:swing 3.2s ease-in-out infinite}
   .bell.l1{left:3%}.bell.l2{left:11%;width:46px;animation-delay:-.8s}
   .bell.r1{right:3%;animation-delay:-1.6s}.bell.r2{right:11%;width:46px;animation-delay:-2.4s}
   @keyframes swing{0%,100%{transform:rotate(7deg)}50%{transform:rotate(-7deg)}}
-  .hero-text{position:absolute;left:0;right:0;top:max(9%,110px);transform-origin:50% 0;text-align:center;z-index:2;padding:0 16px}
+  .hero-text{position:absolute;left:0;right:0;top:16%;text-align:center;z-index:2;padding:0 16px}
   .hero-text .name{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(54px,9vw,118px);line-height:1;color:var(--rose);
     text-shadow:0 2px 18px rgba(255,255,255,.75);opacity:0;animation:rise 1.6s ease forwards}
   .hero-text .name.b{animation-delay:.9s}
@@ -94,22 +90,6 @@
   .inv .comp{margin-top:32px;font-family:'Playfair Display',serif;font-size:clamp(14px,1.7vw,17px);color:#6a4630;line-height:1.7}
   .inv .comp b{font-weight:600;color:var(--maroon)}
 
-  /* ===== 5a. MOR + PUL + GUMBAD (layers, video jaisa) ===== */
-  #pea{background:linear-gradient(180deg,#fdfbf6,#f4eee1)}
-  #pea .pin{position:relative;width:min(100%,177.8vh);aspect-ratio:16/9;margin:0 auto}
-  #pea .pdome{bottom:11%;height:78%}
-  #pea .pdome.l{left:0}#pea .pdome.r{right:0}
-  #pea .pdome.r img,#pea .ppea.l img{transform:scaleX(-1)}
-  #pea .pbridge{left:21%;width:58%;bottom:5%}
-  #pea .pbridge img{width:100%;height:auto}
-  #pea .ppea{width:25%;bottom:30%;z-index:2}
-  #pea .ppea img{width:100%;height:auto}
-  #pea .ppea.l{left:20%}#pea .ppea.r{left:55%}
-  .bobw{animation:pbob 2.6s ease-in-out infinite alternate}
-  .bobw.b{animation-delay:-1.3s}
-  @keyframes pbob{from{transform:translateY(0)}to{transform:translateY(-10px)}}
-  #pea .hedge{position:absolute;left:0;bottom:0;width:100%;height:16%;z-index:3}
-
   /* ===== 5. PEACOCKS ===== */
   #peacocks .bg{background-image:url(images/peacock.jpg)}
 
@@ -139,15 +119,6 @@
   #stage.play .cur.l{transform:translateX(-102%)}
   #stage.play .cur.r{transform:translateX(102%)}
   .valance{position:absolute;top:0;left:0;width:100%;height:60px;z-index:3}
-  /* phoolon wale khambhe side se andar aate hain */
-  #stage .spil{bottom:0;height:78%;z-index:1;transition:transform 1.8s cubic-bezier(.3,.7,.3,1) 2s}
-  #stage .spil.l{left:0;transform:translateX(-170%)}#stage .spil.r{right:0;transform:translateX(170%)}
-  #stage.play .spil{transform:none}
-  /* Meet: couple hall mein aage chalte hain */
-  #meet .mcouple{left:50%;bottom:0;height:88%;z-index:0;transform-origin:50% 100%}
-  #meet .mcouple .walkb{height:100%;animation:walkb .6s ease-in-out infinite alternate}
-  @keyframes walkb{from{transform:translateY(0)}to{transform:translateY(-1.2%)}}
-
   /* ===== 9. MEET ===== */
   #meet{text-align:center}
   #meet .hallimg{position:relative;width:100%;aspect-ratio:16/9;max-height:100vh;display:flex;align-items:flex-end;justify-content:center;padding-bottom:7%}
@@ -222,10 +193,7 @@
     #final .bg{background-position:62% center}
     #walk .bg{background-position:52% center}
     #peacocks .bg{background-position:48% center}
-    .track .ph{width:130px;height:170px;margin-right:12px}
-    #pea .pin{width:165%;margin-left:-32.5%}
-    #hero .temple{height:58vh}
-    .g-card{padding:100px 26px 40px}
+    .track .ph{width:130px;height:170px;margin-right:12px}    .g-card{padding:100px 26px 40px}
     .event{padding:100px 26px 60px}
     .meet-card{padding:110px 24px 40px}
     .journey{padding:100px 16px 24px}
@@ -298,7 +266,6 @@
 <div id="heroWrap">
 <section id="hero">
   <div class="bg"></div>
-  <div class="part temple"><img src="images/parts/temple.png" alt=""></div>
   <svg id="garland" viewBox="0 0 1000 120" preserveAspectRatio="xMidYMin slice"></svg>
   <svg class="bell l1" viewBox="0 0 60 172"><use href="#bell"/></svg>
   <svg class="bell l2" viewBox="0 0 60 172"><use href="#bell"/></svg>
@@ -365,18 +332,6 @@
 </section>
 
 <!-- ============ 5. PEACOCKS ============ -->
-<!-- ============ 5. MOR (layers: gumbad side se, pul neeche se, mor upar-neeche) ============ -->
-<section id="pea">
-  <div class="pin">
-    <div class="part pdome l"><img src="images/parts/dome.png" alt=""></div>
-    <div class="part pdome r"><img src="images/parts/dome.png" alt=""></div>
-    <div class="part pbridge"><img src="images/parts/bridge.png" alt=""></div>
-    <div class="part ppea l"><div class="bobw"><img src="images/parts/peacock.png" alt=""></div></div>
-    <div class="part ppea r"><div class="bobw b"><img src="images/parts/peacock.png" alt=""></div></div>
-    <svg class="hedge" id="hedge" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true"></svg>
-  </div>
-</section>
-
 <!-- ============ 6. JOURNEY TITLE (bagiche ke upar) ============ -->
 <section id="peacocks" class="photo">
   <div class="bg zoom"></div>
@@ -402,8 +357,6 @@
 <!-- ============ 8. FLORAL STAGE ============ -->
 <section id="stage" class="photo">
   <div class="bg zoom"></div>
-  <div class="part spil l"><img src="images/parts/pillar.png" alt=""></div>
-  <div class="part spil r"><img src="images/parts/pillar.png" alt=""></div>
   <div class="cur l"></div><div class="cur r"></div>
   <svg class="valance" id="valance" viewBox="0 0 1000 60" preserveAspectRatio="none"></svg>
 </section>
@@ -412,7 +365,6 @@
 <section id="meet">
   <div class="hallimg">
     <div class="bg zoom"></div>
-    <div class="part mcouple"><div class="walkb"><img src="images/parts/couple.png" alt=""></div></div>
     <h2 class="reveal">Meet the<span>BRIDE &amp; GROOM</span></h2>
   </div>
   <div id="meetWrap">
@@ -524,40 +476,20 @@
   });
 
   /* Hero: scroll par naam upar jaate hain, mandir uthta hai */
-  const hWrap=document.getElementById('heroWrap'),hBg=document.querySelector('#hero .bg'),hTx=document.querySelector('.hero-text'),hTm=document.querySelector('#hero .temple');
+  const hWrap=document.getElementById('heroWrap'),hBg=document.querySelector('#hero .bg'),hTx=document.querySelector('.hero-text');
   const cl=v=>Math.min(1,Math.max(0,v));
-  /* section progress: 0 = section ka top screen ke neeche, 1 = section ka top screen ke upar pahunch gaya */
-  const prog=(el,len)=>{const r=el.getBoundingClientRect();return cl((innerHeight-r.top)/(innerHeight*(len||1)));};
-  const pea=document.getElementById('pea'),pDL=pea.querySelector('.pdome.l'),pDR=pea.querySelector('.pdome.r'),pBr=pea.querySelector('.pbridge'),
-        pPL=pea.querySelector('.ppea.l'),pPR=pea.querySelector('.ppea.r');
-  const hall=document.querySelector('#meet .hallimg'),mC=document.querySelector('#meet .mcouple');
   const walk=document.querySelector('#walk .fwd');
-  const ease=t=>1-Math.pow(1-t,3);
   function layersUpd(){
     /* 1. Hero: mandir neeche se uthta hai, naam upar jaate hain */
     const r=hWrap.getBoundingClientRect();const p=cl(-r.top/(r.height-innerHeight));
-    hBg.style.transform=`translateY(${(1-p)*12}%) scale(${1+p*.08})`;
-    hTm.style.transform=`translateX(-50%) translateY(${(1-p)*48}%) scale(${.82+.18*p})`;
-    hTx.style.transform=`translateY(${(1-p)*40}vh) scale(${.78+.0*p})`;
+    hBg.style.transform=`translateY(${(1-p)*20}%) scale(${1+p*.12})`;
+    hTx.style.transform=`translateY(${(1-p)*40}vh) scale(${.8+.2*p})`;
     /* 2. Couple: aage chalne jaisa (mandir ki taraf zoom) */
-    const pw=prog(walk.parentElement,1.6);walk.style.transform=`translateY(${-pw*4}%) scale(${1.02+pw*.2})`;
-    /* 5. Mor scene: gumbad side se, pul neeche se, mor upar se utarte hain */
-    const pp=prog(pea,.95),a=ease(cl(pp*1.5)),b=ease(cl(pp*1.6-.25)),c=ease(cl(pp*1.8-.75));
-    pDL.style.transform=`translateX(${-(1-a)*110}%)`;pDR.style.transform=`translateX(${(1-a)*110}%)`;
-    pBr.style.transform=`translateY(${(1-b)*90}%)`;pBr.style.opacity=b;
-    pPL.style.transform=`translate(${-(1-c)*30}%,${-(1-c)*60}%)`;pPL.style.opacity=c;
-    pPR.style.transform=`translate(${(1-c)*30}%,${-(1-c)*60}%)`;pPR.style.opacity=c;
-    /* 9. Meet: couple hall mein aage chalte hain (chhote hote jaate hain) */
-    const pm=cl((innerHeight-hall.getBoundingClientRect().top)/(innerHeight+hall.offsetHeight*.6));
-    mC.style.transform=`translateX(-50%) translateY(${-pm*38}%) scale(${1-pm*.62})`;
+    const wr=walk.parentElement.getBoundingClientRect(),pw=cl((innerHeight-wr.top)/(innerHeight*1.6));
+    walk.style.transform=`translateY(${-pw*4}%) scale(${1.02+pw*.2})`;
   }
   let lt=false;addEventListener('scroll',()=>{if(!lt){lt=true;requestAnimationFrame(()=>{layersUpd();lt=false;});}},{passive:true});
   addEventListener('resize',layersUpd);layersUpd();
-
-  /* bagiche ki jhaadi (mor scene ke neeche) */
-  const hedge=document.getElementById('hedge');
-  for(let x=-20;x<=1020;x+=26){el('ellipse',{cx:x,cy:78+rnd()*10,rx:30+rnd()*14,ry:34+rnd()*12,fill:rnd()>.5?'#5f9a4c':'#4e8a40'},hedge);}
-  for(let i=0;i<40;i++)flower(hedge,rnd()*1000,55+rnd()*40,5+rnd()*4,['#f2a0bd','#ffffff','#e8608f','#f7c21b'][i%4],'#f7c21b');
 
   /* Ganesh: darwaze khulte hain */
   const gan=document.getElementById('ganesh');
