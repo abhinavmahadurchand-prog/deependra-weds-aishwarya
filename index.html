@@ -26,15 +26,17 @@
   .bg{position:absolute;inset:-4%;background-size:cover;background-position:center;will-change:transform}
 
   /* ===== 1. HERO ===== */
-  #hero{height:100vh;min-height:560px}
-  #hero .bg{background-image:url(images/hero.jpg);background-position:center bottom;inset:0;animation:heroZoom 18s ease-out forwards}
-  @keyframes heroZoom{from{transform:scale(1.15)}to{transform:scale(1)}}
+  /* hero scroll scene: naam upar jaate hain, mandir neeche se uthta hai */
+  #heroWrap{position:relative;height:185vh}
+  #hero{position:sticky;top:0;height:100vh;min-height:520px;background:#dbe9f2}
+  #hero .bg{background-image:url(images/hero.jpg);background-position:center bottom;inset:-30% 0 0 0;transform-origin:50% 100%}
+  .hero-text{will-change:transform}
   #garland{position:absolute;top:0;left:0;width:100%;height:120px;z-index:3}
   .bell{position:absolute;top:0;width:62px;z-index:4;transform-origin:50% 0;animation:swing 3.2s ease-in-out infinite}
   .bell.l1{left:3%}.bell.l2{left:11%;width:46px;animation-delay:-.8s}
   .bell.r1{right:3%;animation-delay:-1.6s}.bell.r2{right:11%;width:46px;animation-delay:-2.4s}
   @keyframes swing{0%,100%{transform:rotate(7deg)}50%{transform:rotate(-7deg)}}
-  .hero-text{position:absolute;left:0;right:0;top:22%;text-align:center;z-index:2;padding:0 16px}
+  .hero-text{position:absolute;left:0;right:0;top:16%;text-align:center;z-index:2;padding:0 16px}
   .hero-text .name{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(54px,9vw,118px);line-height:1;color:var(--rose);
     text-shadow:0 2px 18px rgba(255,255,255,.75);opacity:0;animation:rise 1.6s ease forwards}
   .hero-text .name.b{animation-delay:.9s}
@@ -58,9 +60,21 @@
   /* ===== 3. GANESH ===== */
   #ganesh{min-height:min(56.25vw,100vh);display:flex;align-items:center;justify-content:center;padding:70px 20px}
   #ganesh .bg{background-image:url(images/ganesh.jpg)}
-  .g-card{position:relative;z-index:1;max-width:460px;text-align:center;padding:34px 26px 30px;background:rgba(255,253,248,.82);
-    border:1.5px solid var(--gold);border-radius:220px 220px 10px 10px;box-shadow:0 10px 34px rgba(110,80,40,.16);backdrop-filter:blur(2px)}
-  .g-card svg{width:92px;margin:6px auto 12px}
+  .g-card{position:relative;z-index:1;width:min(460px,100%);text-align:center;padding:120px 30px 46px}
+  .g-card .gicon{width:88px;margin:0 auto 12px}
+  /* darwaze khulne wala effect */
+  .doors{position:absolute;inset:0;z-index:3;perspective:1800px;pointer-events:none}
+  .door{position:absolute;top:0;bottom:0;width:50.2%;background-size:auto 100%;background-repeat:repeat-x;
+    box-shadow:inset 0 0 50px rgba(60,30,0,.35);transition:transform 2.6s cubic-bezier(.55,.05,.3,1),opacity .9s ease 2s}
+  .door.l{left:0;background-image:url(images/door-l.jpg);background-position:right top;transform-origin:0 50%}
+  .door.r{right:0;background-image:url(images/door-r.jpg);background-position:left top;transform-origin:100% 50%}
+  #ganesh.open .door.l{transform:rotateY(-105deg);opacity:0}
+  #ganesh.open .door.r{transform:rotateY(105deg);opacity:0}
+
+  /* lahardaar mehrab (scalloped arch) card frame */
+  .mehrab{position:relative;isolation:isolate}
+  .mehrab>.frame{position:absolute;inset:0;width:100%;height:100%;z-index:-1;filter:drop-shadow(0 10px 22px rgba(110,80,40,.16))}
+  .divider{width:200px;margin:0 auto}
   .shloka{font-family:'Tiro Devanagari Sanskrit',serif;color:#8a3a1e;line-height:2}
   .shloka .h{font-size:clamp(20px,3vw,26px);color:#a0501a;margin-bottom:4px}
   .shloka p{font-size:clamp(16px,2.2vw,20px)}
@@ -83,17 +97,17 @@
   #journey{background:#f6efe3;padding:90px 20px 30px;text-align:center}
   .sec-title{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,5.5vw,58px);color:#5a3526;line-height:1.15}
   .sub{font-family:'Playfair Display',serif;font-size:clamp(15px,2vw,20px);color:#6a4630;margin-top:12px}
-  #events{background:#f6efe3;padding:30px 20px 90px;text-align:center}
-  .event{position:relative;max-width:380px;margin:0 auto;background:#fffdf8;padding:78px 30px 44px;
-    border-radius:190px 190px 22px 22px;box-shadow:0 14px 34px rgba(110,80,40,.18);border:2px solid var(--gold)}
-  .event::before{content:"";position:absolute;inset:9px;border:1px solid var(--gold);border-radius:180px 180px 16px 16px;pointer-events:none}
+  #events{background:#f6efe3;padding:40px 20px 90px;text-align:center}
+  .event{max-width:380px;margin:0 auto;padding:110px 34px 70px}
+  .journey{position:absolute;left:0;right:0;bottom:0;z-index:1;text-align:center;padding:140px 20px 34px;
+    background:linear-gradient(to bottom,rgba(246,239,227,0),rgba(246,239,227,.85) 45%,#f6efe3 75%)}
   .event h3{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(32px,5vw,40px);color:var(--rose);line-height:1.1}
   .event .d{font-family:'Playfair Display',serif;font-size:17px;color:#5a3a26;margin-top:16px}
   .event .t{font-size:19px;color:#6a4630;margin-top:2px}
   .event .v{font-family:'Playfair Display',serif;font-weight:600;font-size:18px;letter-spacing:2px;color:var(--maroon);margin-top:20px}
   .event .a{font-size:17px;line-height:1.5;color:#5a3a26;margin-top:6px}
   .sunburst{width:170px;margin:26px auto 0}
-  .lotus-ic{width:58px;margin:34px auto 0}
+  #events .divider{margin-top:30px}
 
   /* ===== 8. STAGE (curtains open on scroll) ===== */
   #stage .bg{background-image:url(images/stage.jpg)}
@@ -112,25 +126,31 @@
   #meet .hallimg .bg{background-image:url(images/hall.jpg)}
   #meet h2{position:relative;z-index:1;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,6vw,68px);line-height:1.15;color:#5a3a3a;text-shadow:0 2px 14px rgba(255,255,255,.85)}
   #meet h2 span{display:block;letter-spacing:2px}
-  .meet-card{max-width:760px;margin:-20px auto 0;position:relative;z-index:1;background:#fffdf8;padding:44px 34px 36px;
-    border:1.5px solid var(--gold);border-radius:30px;box-shadow:0 12px 30px rgba(110,80,40,.14)}
+  .meet-card{max-width:760px;margin:-20px auto 0;z-index:1;padding:150px 50px 50px}
+  .meet-card .divider{margin-bottom:18px}
   .meet-card p{font-size:clamp(18px,2.2vw,22px);line-height:1.75;color:#5a3a26}
   #meetWrap{background:#fbf6ee;padding:0 20px 90px}
 
   /* ===== 10. GALLERY ===== */
   #gallery{background:#fbf6ee;padding:10px 16px 90px}
-  .grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:230px;gap:14px}
-  .ph{position:relative;border-radius:14px;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 22px rgba(110,70,30,.22);
+  /* chalti hui photo patti + badi photo */
+  .strip{overflow:hidden;padding:12px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .track{display:flex;width:max-content;animation:marquee 34s linear infinite}
+  .strip:hover .track{animation-play-state:paused}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+  .ph{position:relative;border-radius:12px;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 20px rgba(110,70,30,.22);
     background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center}
+  .track .ph{flex:none;width:170px;height:220px;margin-right:16px}
   .ph svg{width:60%;max-height:78%;height:auto;opacity:.9}
   .ph.has-photo svg{display:none}
-  .ph.tall{grid-row:span 2}.ph.wide{grid-column:span 2}
-  .ph:nth-child(1){background-image:linear-gradient(160deg,#e9a17b,#b2323f)}
-  .ph:nth-child(2){background-image:linear-gradient(160deg,#f3d58c,#c98a2e)}
-  .ph:nth-child(3){background-image:linear-gradient(160deg,#f6b8c8,#c2546f)}
-  .ph:nth-child(4){background-image:linear-gradient(160deg,#9dd3c3,#3f8f7a)}
-  .ph:nth-child(5){background-image:linear-gradient(160deg,#f7c59a,#c4602f)}
-  .ph:nth-child(6){background-image:linear-gradient(160deg,#d6b6e6,#8a4fa8)}
+  .ph.feature{max-width:1000px;aspect-ratio:16/9;margin:34px auto 0;border-width:6px}
+  .ph.feature svg{width:28%}
+  .ph.c1{background-image:linear-gradient(160deg,#e9a17b,#b2323f)}
+  .ph.c2{background-image:linear-gradient(160deg,#f3d58c,#c98a2e)}
+  .ph.c3{background-image:linear-gradient(160deg,#f6b8c8,#c2546f)}
+  .ph.c4{background-image:linear-gradient(160deg,#9dd3c3,#3f8f7a)}
+  .ph.c5{background-image:linear-gradient(160deg,#f7c59a,#c4602f)}
+  .ph.c6{background-image:linear-gradient(160deg,#d6b6e6,#8a4fa8)}
 
   /* ===== 11. VENUE ===== */
   #venue{background:#f6efe3;padding:90px 20px;text-align:center}
@@ -155,7 +175,11 @@
   .rsvp-card button:hover{background:#25733a;transform:translateY(-2px)}
 
   /* ===== 13. COUNTDOWN ===== */
-  #countdown{background:#f6efe3;padding:80px 20px 70px;text-align:center}
+  #countdown{background:#f6efe3;padding:60px 20px 80px;text-align:center}
+  #countdown .sun{width:200px;margin:0 auto 18px;transform:scaleY(-1)}
+  .vine{position:absolute;top:0;bottom:0;width:clamp(70px,12vw,150px);height:100%;pointer-events:none}
+  .vine.l{left:0}.vine.r{right:0;transform:scaleX(-1)}
+  #countdown h2,#countdown .cd{position:relative;z-index:1}
   .cd{display:flex;justify-content:center;gap:clamp(18px,5vw,56px);margin-top:30px}
   .cd b{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(38px,7vw,68px);color:var(--gold);line-height:1}
   .cd span{display:block;margin-top:8px;font-family:'Playfair Display',serif;font-size:clamp(10px,1.4vw,13px);letter-spacing:3px;text-transform:uppercase;color:#8a6a4a}
@@ -170,8 +194,11 @@
     #final .bg{background-position:62% center}
     #walk .bg{background-position:52% center}
     #peacocks .bg{background-position:48% center}
-    .grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
-    .ph.wide,.ph:nth-child(5){grid-column:span 2}
+    .track .ph{width:130px;height:170px;margin-right:12px}
+    .g-card{padding:100px 26px 40px}
+    .event{padding:100px 26px 60px}
+    .meet-card{padding:110px 24px 40px}
+    .journey{padding:100px 16px 24px}
     .bell.l2,.bell.r2{display:none}
     .bell{width:46px}
     .hero-text{top:18%}
@@ -217,10 +244,28 @@
         <path d="M60 30L64 26L68 30L64 34Z M102 30L106 26L110 30L106 34Z" fill="#c49a52"/>
       </g>
     </symbol>
+    <symbol id="lotusDiv" viewBox="0 0 200 70">
+      <g transform="translate(70 0)" fill="#e8608f" stroke="#c94377" stroke-width=".8">
+        <path d="M30 40C22 32 22 16 30 4C38 16 38 32 30 40Z"/>
+        <path d="M30 40C20 38 12 27 12 14C22 18 28 29 30 40Z"/><path d="M30 40C40 38 48 27 48 14C38 18 32 29 30 40Z"/>
+        <path d="M30 40C18 41 6 36 2 25C14 25 24 31 30 40Z" fill="#f28db3"/><path d="M30 40C42 41 54 36 58 25C46 25 36 31 30 40Z" fill="#f28db3"/>
+        <path d="M22 40Q30 46 38 40Z" fill="#2f8a52" stroke="none"/>
+      </g>
+      <path d="M8 58H90M110 58H192" stroke="#e48aa8" stroke-width="1.5"/>
+      <path d="M100 52L105 58L100 64L95 58Z" fill="#e05d8c"/>
+    </symbol>
+    <!-- lahardaar mehrab frame -->
+    <symbol id="mehrabFrame" viewBox="0 0 400 520" preserveAspectRatio="none">
+      <path d="M6 514V172C6 142 22 130 44 128C50 94 76 74 110 76C124 42 160 24 200 8C240 24 276 42 290 76C324 74 350 94 356 128C378 130 394 142 394 172V514Z"
+        fill="#fffdf8" fill-opacity=".94" stroke="#c49a52" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+      <path d="M18 502V176C18 152 32 142 54 140C60 108 84 90 116 90C130 58 164 40 200 24C236 40 270 58 284 90C316 90 340 108 346 140C368 142 382 152 382 176V502Z"
+        fill="none" stroke="#c49a52" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    </symbol>
   </defs>
 </svg>
 
 <!-- ============ 1. HERO ============ -->
+<div id="heroWrap">
 <section id="hero">
   <div class="bg"></div>
   <svg id="garland" viewBox="0 0 1000 120" preserveAspectRatio="xMidYMin slice"></svg>
@@ -238,6 +283,7 @@
     <div class="om">Om Shree Ganeshay Namah</div>
   </div>
 </section>
+</div>
 
 <!-- ============ 2. COUPLE WALKING ============ -->
 <section id="walk" class="photo"><div class="bg zoom"></div></section>
@@ -245,8 +291,9 @@
 <!-- ============ 3. GANESH ============ -->
 <section id="ganesh">
   <div class="bg zoom"></div>
-  <div class="g-card reveal">
-    <svg viewBox="0 0 120 120" aria-hidden="true">
+  <div class="doors"><div class="door l"></div><div class="door r"></div></div>
+  <div class="g-card mehrab">
+    <svg class="gicon" viewBox="0 0 120 120" aria-hidden="true">
       <g fill="none" stroke="#b5842f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M46 31L60 8L74 31Z" fill="#f3d48c"/><circle cx="60" cy="8" r="3" fill="#e9b94d"/>
         <path d="M43 31H77"/>
@@ -287,17 +334,18 @@
 </section>
 
 <!-- ============ 5. PEACOCKS ============ -->
-<section id="peacocks" class="photo"><div class="bg zoom"></div></section>
-
-<!-- ============ 6. JOURNEY TITLE ============ -->
-<section id="journey">
-  <h2 class="sec-title reveal">A Journey of Celebration</h2>
-  <p class="sub reveal">Mark Your Calendars, We Can't Wait to Celebrate</p>
+<!-- ============ 6. JOURNEY TITLE (bagiche ke upar) ============ -->
+<section id="peacocks" class="photo">
+  <div class="bg zoom"></div>
+  <div class="journey">
+    <h2 class="sec-title reveal">A Journey of Celebration</h2>
+    <p class="sub reveal">Mark Your Calendars, We Can't Wait to Celebrate</p>
+  </div>
 </section>
 
 <!-- ============ 7. EVENTS ============ -->
 <section id="events">
-  <div class="event reveal">
+  <div class="event mehrab reveal">
     <h3>Wedding<br>Ceremony</h3>
     <div class="d">Friday, 11 December 2026</div>
     <div class="t">07:00 PM Onwards</div>
@@ -305,13 +353,7 @@
     <div class="a">Baghagada to Sahjanwa Road Near Tenua Toll Plaza,<br>Gorakhpur, Uttar Pradesh</div>
     <svg class="sunburst" viewBox="0 0 170 40"><use href="#sunburst"/></svg>
   </div>
-  <svg class="lotus-ic reveal" viewBox="0 0 60 40" aria-hidden="true">
-    <g fill="#e8608f" stroke="#c94377" stroke-width=".8">
-      <path d="M30 36C22 28 22 14 30 4C38 14 38 28 30 36Z"/>
-      <path d="M30 36C20 34 12 24 12 12C22 16 28 26 30 36Z"/><path d="M30 36C40 34 48 24 48 12C38 16 32 26 30 36Z"/>
-      <path d="M30 36C18 37 6 32 2 22C14 22 24 28 30 36Z" fill="#f28db3"/><path d="M30 36C42 37 54 32 58 22C46 22 36 28 30 36Z" fill="#f28db3"/>
-    </g>
-  </svg>
+  <svg class="divider reveal" viewBox="0 0 200 70" aria-hidden="true"><use href="#lotusDiv"/></svg>
 </section>
 
 <!-- ============ 8. FLORAL STAGE ============ -->
@@ -328,7 +370,8 @@
     <h2 class="reveal">Meet the<span>BRIDE &amp; GROOM</span></h2>
   </div>
   <div id="meetWrap">
-    <div class="meet-card reveal">
+    <div class="meet-card mehrab reveal">
+      <svg class="divider" viewBox="0 0 200 70" aria-hidden="true"><use href="#lotusDiv"/></svg>
       <p>Our hearts are full and our smiles wide, we can hardly believe our dreamy eyed teen selves made it here! We're ready to make memories that last a lifetime, and they'll be incomplete without you by our side. Come celebrate our love, share our joy, eat till you can't move and help us make this day a beautiful, laughter-filled blur we'll never forget!</p>
       <svg class="sunburst" viewBox="0 0 170 40"><use href="#sunburst"/></svg>
     </div>
@@ -338,14 +381,8 @@
 <!-- ============ 10. PHOTO GALLERY ============ -->
 <!-- Photos "photos" folder me 1.jpg ... 6.jpg naam se rakhein -->
 <section id="gallery">
-  <div class="grid">
-    <figure class="ph tall reveal" data-photo="photos/1.jpg"><svg viewBox="0 0 200 200"><use href="#coupleSil"/></svg></figure>
-    <figure class="ph reveal" data-photo="photos/2.jpg"><svg viewBox="0 0 200 200"><use href="#coupleSil"/></svg></figure>
-    <figure class="ph reveal" data-photo="photos/3.jpg"><svg viewBox="0 0 200 200"><use href="#coupleSil"/></svg></figure>
-    <figure class="ph wide reveal" data-photo="photos/4.jpg"><svg viewBox="0 0 200 200"><use href="#coupleSil"/></svg></figure>
-    <figure class="ph reveal" data-photo="photos/5.jpg"><svg viewBox="0 0 200 200"><use href="#coupleSil"/></svg></figure>
-    <figure class="ph wide reveal" data-photo="photos/6.jpg"><svg viewBox="0 0 200 200"><use href="#coupleSil"/></svg></figure>
-  </div>
+  <div class="strip"><div class="track" id="track"></div></div>
+  <figure class="ph feature c1 reveal" data-photo="photos/1.jpg"><svg viewBox="0 0 200 200"><use href="#coupleSil"/></svg></figure>
 </section>
 
 <!-- ============ 11. VENUE ============ -->
@@ -373,6 +410,9 @@
 
 <!-- ============ 13. COUNTDOWN ============ -->
 <section id="countdown">
+  <svg class="vine l" id="vineL" viewBox="0 0 120 600" preserveAspectRatio="xMinYMax slice" aria-hidden="true"></svg>
+  <svg class="vine r" id="vineR" viewBox="0 0 120 600" preserveAspectRatio="xMinYMax slice" aria-hidden="true"></svg>
+  <svg class="sun reveal" viewBox="0 0 170 40" aria-hidden="true"><use href="#sunburst"/></svg>
   <h2 class="sec-title reveal">The Countdown to forever begins</h2>
   <div class="cd reveal">
     <div><b id="cdD">0</b><span>Days</span></div>
@@ -414,6 +454,39 @@
     el('path',{d:`M${x} 14Q${x+50} 58 ${x+100} 14Z`,fill:'url(#gRed)',stroke:'#e9b94d','stroke-width':2.5},val);
     el('circle',{cx:x+100,cy:16,r:5,fill:'#e9b94d'},val);
   }
+
+  /* Mehrab frames behind cards */
+  document.querySelectorAll('.mehrab').forEach(c=>{
+    const s=el('svg',{class:'frame',viewBox:'0 0 400 520',preserveAspectRatio:'none','aria-hidden':'true'});
+    el('use',{href:'#mehrabFrame'},s);c.prepend(s);});
+
+  /* Gallery: chalti patti (photos 1-6, do baar taaki patti kabhi khatam na ho) */
+  const track=document.getElementById('track');
+  for(let k=0;k<2;k++)for(let i=1;i<=6;i++){
+    const f=document.createElement('figure');f.className='ph c'+i;f.dataset.photo=`photos/${i}.jpg`;
+    f.innerHTML='<svg viewBox="0 0 200 200"><use href="#coupleSil"/></svg>';track.appendChild(f);}
+
+  /* Countdown: dono taraf phoolon ki bel */
+  let sd=11;const rnd=()=>{sd=(sd*16807)%2147483647;return (sd-1)/2147483646;};
+  ['vineL','vineR'].forEach(id=>{
+    const v=document.getElementById(id);
+    el('path',{d:'M30 600C60 520 10 450 40 380C70 310 20 240 46 170C66 110 30 60 44 0',stroke:'#5f8f4a','stroke-width':3,fill:'none'},v);
+    el('path',{d:'M38 600C80 540 60 470 86 420C104 380 80 320 98 280',stroke:'#6f9f58','stroke-width':2,fill:'none'},v);
+    for(let y=590;y>10;y-=22){const x=30+18*Math.sin(y/45)+(rnd()*10);
+      el('ellipse',{cx:x+10,cy:y,rx:9,ry:4.5,fill:rnd()>.5?'#6fa35a':'#5a8f48',transform:`rotate(${-30+rnd()*60} ${x+10} ${y})`},v);
+      if(rnd()>.45)flower(v,x+(rnd()*40-6),y-8,6+rnd()*6,['#f2a0bd','#f7c6d6','#ffffff','#e8608f'][Math.floor(rnd()*4)],'#f7c21b');}
+  });
+
+  /* Hero: scroll par naam upar jaate hain, mandir uthta hai */
+  const hWrap=document.getElementById('heroWrap'),hBg=document.querySelector('#hero .bg'),hTx=document.querySelector('.hero-text');
+  function heroUpd(){const r=hWrap.getBoundingClientRect();const p=Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));
+    hBg.style.transform=`translateY(${(1-p)*20}%) scale(${1+p*.12})`;
+    hTx.style.transform=`translateY(${(1-p)*42}vh) scale(${.8+.2*p})`;}
+  addEventListener('scroll',heroUpd,{passive:true});addEventListener('resize',heroUpd);heroUpd();
+
+  /* Ganesh: darwaze khulte hain */
+  const gan=document.getElementById('ganesh');
+  new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){gan.classList.add('open');o.disconnect();}}),{threshold:.45}).observe(gan);
 
   /* Reveal on scroll */
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
