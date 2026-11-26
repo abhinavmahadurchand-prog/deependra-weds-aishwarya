@@ -142,7 +142,13 @@
   .track .ph{flex:none;width:170px;height:220px;margin-right:16px}
   .ph svg{width:60%;max-height:78%;height:auto;opacity:.9}
   .ph.has-photo svg{display:none}
-  .ph.feature{max-width:1000px;aspect-ratio:16/9;margin:34px auto 0;border-width:6px}
+  /* photo: chehra dikhe (upar ki taraf focus) + halka zoom-in/zoom-out */
+  .ph{isolation:isolate}
+  .ph::before{content:"";position:absolute;inset:0;z-index:-1;background-image:var(--img);background-size:cover;
+    background-position:center 22%;transform-origin:50% 28%;animation:kb 11s ease-in-out infinite alternate}
+  .track .ph:nth-child(3n+2)::before{animation-delay:-4s}.track .ph:nth-child(3n)::before{animation-delay:-8s}
+  @keyframes kb{from{transform:scale(1)}to{transform:scale(1.07)}}
+  .ph.feature{max-width:760px;aspect-ratio:4/3;margin:34px auto 0;border-width:6px}
   .ph.feature svg{width:28%}
   .ph.c1{background-image:linear-gradient(160deg,#e9a17b,#b2323f)}
   .ph.c2{background-image:linear-gradient(160deg,#f3d58c,#c98a2e)}
@@ -517,7 +523,7 @@
 
   /* Gallery photos */
   document.querySelectorAll('.ph[data-photo]').forEach(f=>{const img=new Image();
-    img.onload=()=>{f.style.backgroundImage=`url("${f.dataset.photo}")`;f.classList.add('has-photo');};img.src=f.dataset.photo;});
+    img.onload=()=>{f.style.setProperty('--img',`url("${f.dataset.photo}")`);f.classList.add('has-photo');};img.src=f.dataset.photo;});
 
   /* RSVP -> WhatsApp */
   document.getElementById('rsvpForm').addEventListener('submit',e=>{e.preventDefault();
