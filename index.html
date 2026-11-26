@@ -6,108 +6,120 @@
 <title>Deependra weds Aishwarya</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600;700&family=Cinzel:wght@500;700&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:'Cormorant Garamond',Georgia,serif;color:#4a2c12;background:#fff8ea;overflow-x:hidden}
+  body{font-family:'Cormorant Garamond',Georgia,serif;color:#4a3020;background:#fbf6ee;overflow-x:hidden}
   section{position:relative;overflow:hidden}
   svg{display:block}
-  .scene{width:100%;height:auto}
-  .script{font-family:'Great Vibes',cursive;font-weight:400}
 
-  /* scroll reveal */
-  .reveal{opacity:0;transform:translateY(40px);transition:opacity 1.1s ease,transform 1.1s ease}
+  :root{--rose:#a84f58;--maroon:#7d2a33;--gold:#c49a52;--ink:#4a3020}
+  .serif{font-family:'Playfair Display',Georgia,serif}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity 1.1s ease,transform 1.1s ease}
   .reveal.in{opacity:1;transform:none}
 
+  /* full-width photo scenes with slow zoom */
+  .photo{width:100%;aspect-ratio:16/9;max-height:100vh}
+  .bg{position:absolute;inset:-4%;background-size:cover;background-position:center;will-change:transform}
+
   /* ===== 1. HERO ===== */
-  #hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;
-    background:linear-gradient(180deg,#cfe8f7 0%,#e6f1f1 38%,#fbf0d6 70%,#f1d79e 100%)}
+  #hero{height:100vh;min-height:560px}
+  #hero .bg{background-image:url(images/hero.jpg);background-position:center bottom;inset:0;animation:heroZoom 18s ease-out forwards}
+  @keyframes heroZoom{from{transform:scale(1.15)}to{transform:scale(1)}}
   #garland{position:absolute;top:0;left:0;width:100%;height:120px;z-index:3}
-  .bell{position:absolute;top:0;width:64px;z-index:4;transform-origin:50% 0;animation:swing 3.2s ease-in-out infinite}
-  .bell.l1{left:4%}.bell.l2{left:12%;width:48px;animation-delay:-.8s}
-  .bell.r1{right:4%;animation-delay:-1.6s}.bell.r2{right:12%;width:48px;animation-delay:-2.4s}
+  .bell{position:absolute;top:0;width:62px;z-index:4;transform-origin:50% 0;animation:swing 3.2s ease-in-out infinite}
+  .bell.l1{left:3%}.bell.l2{left:11%;width:46px;animation-delay:-.8s}
+  .bell.r1{right:3%;animation-delay:-1.6s}.bell.r2{right:11%;width:46px;animation-delay:-2.4s}
   @keyframes swing{0%,100%{transform:rotate(7deg)}50%{transform:rotate(-7deg)}}
-  .hero-text{position:relative;z-index:2;text-align:center;padding:170px 20px 10px}
-  .hero-text .name{font-size:clamp(58px,11vw,128px);line-height:1.05;color:#8a5a1c;text-shadow:0 2px 6px rgba(255,255,255,.7)}
-  .hero-text .weds{font-size:clamp(30px,5vw,54px);color:#b5842f;line-height:1.1}
-  .om{font-family:'Cinzel',serif;letter-spacing:3px;font-size:clamp(12px,1.7vw,17px);color:#7b4a16;margin-top:18px}
-  #hero .scene{margin-top:auto}
-  .bird{position:absolute;left:0;width:34px;z-index:1;animation:fly linear infinite}
+  .hero-text{position:absolute;left:0;right:0;top:22%;text-align:center;z-index:2;padding:0 16px}
+  .hero-text .name{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(54px,9vw,118px);line-height:1;color:var(--rose);
+    text-shadow:0 2px 18px rgba(255,255,255,.75);opacity:0;animation:rise 1.6s ease forwards}
+  .hero-text .name.b{animation-delay:.9s}
+  .hero-text .weds{font-family:'Great Vibes',cursive;font-size:clamp(28px,4vw,46px);color:var(--rose);margin:4px 0;opacity:0;animation:rise 1.4s ease .5s forwards}
+  .om{font-family:'Playfair Display',serif;letter-spacing:3px;text-transform:uppercase;font-size:clamp(11px,1.4vw,15px);color:#7a4a30;margin-top:22px;opacity:0;animation:rise 1.4s ease 1.4s forwards}
+  @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  .bird{position:absolute;left:0;width:30px;z-index:1;animation:fly linear infinite}
   .bird path{animation:flap .45s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
   @keyframes fly{from{transform:translateX(-60px)}to{transform:translateX(calc(100vw + 60px))}}
   @keyframes flap{from{transform:scaleY(1)}to{transform:scaleY(.35)}}
 
-  /* ===== 2. COUPLE WALKING ===== */
-  #walk{background:linear-gradient(180deg,#fdf5e2 0%,#f6e2b4 60%,#eccb85 100%)}
-  #walk .scene{max-width:1100px;margin:0 auto}
-  .couple{animation:bob 1.1s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
-  @keyframes bob{from{transform:translateY(0)}to{transform:translateY(-4px)}}
-
-  /* common content sections */
-  .content{padding:90px 20px;text-align:center}
-  .sec-title{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(40px,7vw,70px);color:#8a5a1c;line-height:1.15}
-  .sub{font-family:'Cinzel',serif;font-size:clamp(13px,1.8vw,17px);letter-spacing:2px;color:#7b4a16;margin-top:10px}
+  /* ===== 2. COUPLE ===== */
+  #walk .bg{background-image:url(images/couple.jpg);background-position:center 60%}
 
   /* ===== 3. GANESH ===== */
-  #ganesh{background:#f8ecd2}
-  .g-card{max-width:560px;margin:0 auto;background:#fff;padding:50px 30px;border:3px solid #c9973f;
-    outline:1px solid #c9973f;outline-offset:-14px;box-shadow:0 10px 30px rgba(140,90,30,.18)}
-  .g-card svg{width:110px;margin:0 auto 18px}
-  .shloka{font-family:'Tiro Devanagari Sanskrit',serif;color:#8a3a12;line-height:2}
-  .shloka .h{font-size:clamp(22px,3.6vw,30px);color:#a0501a;margin-bottom:8px}
-  .shloka p{font-size:clamp(17px,2.6vw,22px)}
+  #ganesh{min-height:min(56.25vw,100vh);display:flex;align-items:center;justify-content:center;padding:70px 20px}
+  #ganesh .bg{background-image:url(images/ganesh.jpg)}
+  .g-card{position:relative;z-index:1;max-width:460px;text-align:center;padding:34px 26px 30px;background:rgba(255,253,248,.82);
+    border:1.5px solid var(--gold);border-radius:220px 220px 10px 10px;box-shadow:0 10px 34px rgba(110,80,40,.16);backdrop-filter:blur(2px)}
+  .g-card svg{width:92px;margin:6px auto 12px}
+  .shloka{font-family:'Tiro Devanagari Sanskrit',serif;color:#8a3a1e;line-height:2}
+  .shloka .h{font-size:clamp(20px,3vw,26px);color:#a0501a;margin-bottom:4px}
+  .shloka p{font-size:clamp(16px,2.2vw,20px)}
 
-  /* ===== 4. INVITATION TEXT ===== */
-  #invite{background:linear-gradient(180deg,#fffaf0,#fbeed2)}
-  .inv{max-width:720px;margin:0 auto;font-size:clamp(18px,2.4vw,23px);line-height:1.6;color:#5b3613}
-  .inv .who{font-family:'Great Vibes',cursive;font-size:clamp(46px,7vw,68px);color:#9c2a2a;line-height:1.1;margin-top:28px}
-  .inv .par{font-family:'Cinzel',serif;font-size:clamp(12px,1.7vw,15px);letter-spacing:1.5px;color:#6d4518}
-  .inv .with{font-family:'Great Vibes',cursive;font-size:clamp(34px,5vw,46px);color:#b5842f;margin-top:22px}
-  .inv .quote{font-style:italic;font-size:clamp(20px,2.8vw,26px);color:#8a5a1c;margin-top:40px}
-  .inv .comp{margin-top:36px;font-family:'Cinzel',serif;font-size:clamp(13px,1.8vw,16px);letter-spacing:2px;color:#7b4a16}
+  /* ===== 4. INVITATION ===== */
+  #invite{padding:90px 20px 110px;text-align:center}
+  #invite .bg{background-image:url(images/invite.jpg)}
+  .inv{position:relative;z-index:1;max-width:640px;margin:0 auto;font-size:clamp(18px,2.2vw,22px);line-height:1.6;color:#5a3a26}
+  .inv .who{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(44px,6.5vw,72px);color:var(--rose);line-height:1.1;margin-top:26px}
+  .inv .par{font-size:clamp(15px,1.8vw,18px);letter-spacing:.5px;color:#6a4630;margin-top:4px}
+  .inv .with{font-family:'Great Vibes',cursive;font-size:clamp(34px,5vw,46px);color:var(--gold);margin-top:18px}
+  .inv .quote{font-style:italic;font-size:clamp(20px,2.6vw,25px);color:var(--maroon);margin-top:38px}
+  .inv .comp{margin-top:32px;font-family:'Playfair Display',serif;font-size:clamp(14px,1.7vw,17px);color:#6a4630;line-height:1.7}
+  .inv .comp b{font-weight:600;color:var(--maroon)}
 
   /* ===== 5. PEACOCKS ===== */
-  #peacocks{background:#bfe3c8}
-  .pbob{animation:pbob 2.6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
-  .pbob.b{animation-delay:-1.3s}
-  @keyframes pbob{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+  #peacocks .bg{background-image:url(images/peacock.jpg)}
 
-  /* ===== 6 & 7. JOURNEY / EVENTS ===== */
-  #journey{background:#fbf0d8;padding-bottom:30px}
-  #events{background:#fbf0d8;padding-top:30px}
-  .event{max-width:480px;margin:0 auto;background:#fffdf7;border:2px solid #c9973f;border-radius:200px 200px 16px 16px;
-    padding:70px 30px 40px;box-shadow:0 12px 34px rgba(140,90,30,.2)}
-  .event h3{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(40px,6vw,54px);color:#9c2a2a}
-  .event .d{font-family:'Cinzel',serif;font-size:18px;letter-spacing:1px;color:#5b3613;margin-top:14px}
-  .event .t{font-size:20px;color:#8a5a1c;margin-top:4px}
-  .event .v{font-family:'Cinzel',serif;font-weight:700;font-size:20px;letter-spacing:2px;color:#7b4a16;margin-top:22px}
-  .event .a{font-size:18px;line-height:1.5;color:#5b3613;margin-top:6px}
+  /* ===== 6 & 7. JOURNEY + EVENTS ===== */
+  #journey{background:#f6efe3;padding:90px 20px 30px;text-align:center}
+  .sec-title{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,5.5vw,58px);color:#5a3526;line-height:1.15}
+  .sub{font-family:'Playfair Display',serif;font-size:clamp(15px,2vw,20px);color:#6a4630;margin-top:12px}
+  #events{background:#f6efe3;padding:30px 20px 90px;text-align:center}
+  .event{position:relative;max-width:380px;margin:0 auto;background:#fffdf8;padding:78px 30px 44px;
+    border-radius:190px 190px 22px 22px;box-shadow:0 14px 34px rgba(110,80,40,.18);border:2px solid var(--gold)}
+  .event::before{content:"";position:absolute;inset:9px;border:1px solid var(--gold);border-radius:180px 180px 16px 16px;pointer-events:none}
+  .event h3{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(32px,5vw,40px);color:var(--rose);line-height:1.1}
+  .event .d{font-family:'Playfair Display',serif;font-size:17px;color:#5a3a26;margin-top:16px}
+  .event .t{font-size:19px;color:#6a4630;margin-top:2px}
+  .event .v{font-family:'Playfair Display',serif;font-weight:600;font-size:18px;letter-spacing:2px;color:var(--maroon);margin-top:20px}
+  .event .a{font-size:17px;line-height:1.5;color:#5a3a26;margin-top:6px}
+  .sunburst{width:170px;margin:26px auto 0}
+  .lotus-ic{width:58px;margin:34px auto 0}
 
-  /* ===== 8. FLORAL STAGE ===== */
-  #stage{background:#f6ddd2}
-  #stage .scene{max-width:1200px;margin:0 auto}
-  #curL,#curR{transform-box:fill-box;transition:transform 2.6s cubic-bezier(.6,.05,.3,1)}
-  #curL{transform-origin:0 0}#curR{transform-origin:100% 0}
-  #stage.play #curL,#stage.play #curR{transform:scaleX(.16)}
-  #sofa{transform:translateY(170px);opacity:0;transition:transform 1.8s ease 1.6s,opacity 1.2s ease 1.6s}
-  #stage.play #sofa{transform:none;opacity:1}
-  #chand{transform-box:fill-box;transform-origin:50% 0;animation:chand 3.4s ease-in-out infinite}
-  @keyframes chand{0%,100%{transform:rotate(2.5deg)}50%{transform:rotate(-2.5deg)}}
+  /* ===== 8. STAGE (curtains open on scroll) ===== */
+  #stage .bg{background-image:url(images/stage.jpg)}
+  .cur{position:absolute;top:0;bottom:0;width:51%;z-index:2;transition:transform 2.8s cubic-bezier(.6,.05,.3,1);
+    background:repeating-linear-gradient(90deg,#6e0c1b 0,#c0213a 3.5%,#7d0e1f 7%);box-shadow:0 0 40px rgba(0,0,0,.4)}
+  .cur::after{content:"";position:absolute;top:0;bottom:0;width:18px;background:linear-gradient(90deg,#a7742a,#f4d68c,#a7742a)}
+  .cur.l{left:0;transform-origin:left}.cur.l::after{right:0}
+  .cur.r{right:0;transform-origin:right}.cur.r::after{left:0}
+  #stage.play .cur.l{transform:translateX(-102%)}
+  #stage.play .cur.r{transform:translateX(102%)}
+  .valance{position:absolute;top:0;left:0;width:100%;height:60px;z-index:3}
 
   /* ===== 9. MEET ===== */
-  #meet{background:linear-gradient(180deg,#fff9ef,#fbeed6)}
-  #meet p{max-width:760px;margin:26px auto 0;font-size:clamp(19px,2.4vw,23px);line-height:1.75;color:#5b3613}
+  #meet{text-align:center}
+  #meet .hallimg{position:relative;width:100%;aspect-ratio:16/9;max-height:100vh;display:flex;align-items:flex-end;justify-content:center;padding-bottom:7%}
+  #meet .hallimg .bg{background-image:url(images/hall.jpg)}
+  #meet h2{position:relative;z-index:1;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,6vw,68px);line-height:1.15;color:#5a3a3a;text-shadow:0 2px 14px rgba(255,255,255,.85)}
+  #meet h2 span{display:block;letter-spacing:2px}
+  .meet-card{max-width:760px;margin:-20px auto 0;position:relative;z-index:1;background:#fffdf8;padding:44px 34px 36px;
+    border:1.5px solid var(--gold);border-radius:30px;box-shadow:0 12px 30px rgba(110,80,40,.14)}
+  .meet-card p{font-size:clamp(18px,2.2vw,22px);line-height:1.75;color:#5a3a26}
+  #meetWrap{background:#fbf6ee;padding:0 20px 90px}
 
   /* ===== 10. GALLERY ===== */
-  #gallery{background:#fbeed6;padding:20px 16px 90px}
+  #gallery{background:#fbf6ee;padding:10px 16px 90px}
   .grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:230px;gap:14px}
-  .ph{position:relative;border-radius:14px;overflow:hidden;border:3px solid #fff;box-shadow:0 8px 22px rgba(120,70,20,.25);
+  .ph{position:relative;border-radius:14px;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 22px rgba(110,70,30,.22);
     background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center}
-  .ph svg{width:62%;max-height:78%;height:auto;opacity:.9}
+  .ph svg{width:60%;max-height:78%;height:auto;opacity:.9}
   .ph.has-photo svg{display:none}
   .ph.tall{grid-row:span 2}.ph.wide{grid-column:span 2}
-  .ph:nth-child(1){background-color:#c94b5c;background-image:linear-gradient(160deg,#e9a17b,#b2323f)}
+  .ph:nth-child(1){background-image:linear-gradient(160deg,#e9a17b,#b2323f)}
   .ph:nth-child(2){background-image:linear-gradient(160deg,#f3d58c,#c98a2e)}
   .ph:nth-child(3){background-image:linear-gradient(160deg,#f6b8c8,#c2546f)}
   .ph:nth-child(4){background-image:linear-gradient(160deg,#9dd3c3,#3f8f7a)}
@@ -115,116 +127,63 @@
   .ph:nth-child(6){background-image:linear-gradient(160deg,#d6b6e6,#8a4fa8)}
 
   /* ===== 11. VENUE ===== */
-  #venue{background:#fff8ea}
-  .map{max-width:900px;margin:30px auto 0;border:3px solid #c9973f;border-radius:16px;overflow:hidden;box-shadow:0 10px 28px rgba(120,70,20,.2)}
+  #venue{background:#f6efe3;padding:90px 20px;text-align:center}
+  .map{max-width:900px;margin:30px auto 0;border:2px solid var(--gold);border-radius:16px;overflow:hidden;box-shadow:0 10px 28px rgba(110,70,30,.18)}
   .map iframe{width:100%;height:380px;border:0;display:block}
-  .vd{margin-top:28px}
-  .vd .v{font-family:'Cinzel',serif;font-weight:700;font-size:22px;letter-spacing:2px;color:#7b4a16}
-  .vd .a{font-size:20px;line-height:1.5;color:#5b3613;margin-top:6px}
-  .vd .c{font-size:20px;color:#5b3613;margin-top:16px}
-  .vd .c a{color:#9c2a2a;text-decoration:none;font-weight:600}
+  .vd{margin-top:26px}
+  .vd .v{font-family:'Playfair Display',serif;font-weight:600;font-size:21px;letter-spacing:2px;color:var(--maroon)}
+  .vd .a{font-size:19px;line-height:1.5;color:#5a3a26;margin-top:6px}
+  .vd .c{font-size:19px;color:#5a3a26;margin-top:14px}
+  .vd .c a{color:var(--rose);text-decoration:none;font-weight:600}
 
   /* ===== 12. RSVP ===== */
-  #rsvp{background:linear-gradient(180deg,#fbeed6,#f6e0b4)}
-  .rsvp-card{max-width:460px;margin:0 auto;background:#fffdf7;border:2px solid #c9973f;border-radius:18px;padding:40px 28px;
-    box-shadow:0 12px 30px rgba(120,70,20,.18);text-align:left}
-  .rsvp-card .sec-title{text-align:center;font-size:clamp(34px,6vw,50px);margin-bottom:22px}
-  .rsvp-card label{display:block;font-family:'Cinzel',serif;font-size:14px;letter-spacing:1.5px;color:#7b4a16;margin-top:16px}
-  .rsvp-card input{width:100%;margin-top:8px;padding:12px 14px;font:inherit;font-family:'Cormorant Garamond',serif;font-size:19px;
-    border:1.5px solid #d9b77a;border-radius:10px;background:#fffaf0;color:#4a2c12;outline:none}
-  .rsvp-card input:focus{border-color:#a8741f;box-shadow:0 0 0 3px rgba(201,151,63,.2)}
+  #rsvp{background:#fbf6ee;padding:80px 20px 90px}
+  .rsvp-card{max-width:460px;margin:0 auto;background:#fffdf8;border:1.5px solid var(--gold);border-radius:20px;padding:40px 28px;box-shadow:0 12px 30px rgba(110,70,30,.15)}
+  .rsvp-card h2{font-family:'Playfair Display',serif;font-weight:500;text-align:center;font-size:clamp(26px,4.5vw,36px);color:#5a3526;margin-bottom:18px}
+  .rsvp-card label{display:block;font-family:'Playfair Display',serif;font-size:15px;color:#6a4630;margin-top:16px}
+  .rsvp-card input{width:100%;margin-top:8px;padding:12px 14px;font-family:'Cormorant Garamond',serif;font-size:19px;
+    border:1.5px solid #dcc79d;border-radius:10px;background:#fffaf2;color:#4a3020;outline:none}
+  .rsvp-card input:focus{border-color:#a8741f;box-shadow:0 0 0 3px rgba(196,154,82,.2)}
   .rsvp-card button{width:100%;margin-top:26px;padding:14px;border:0;border-radius:40px;background:#2e8b47;color:#fff;
-    font-family:'Cinzel',serif;font-size:17px;letter-spacing:2px;cursor:pointer;transition:background .3s,transform .2s}
+    font-family:'Playfair Display',serif;font-size:17px;letter-spacing:1px;cursor:pointer;transition:background .3s,transform .2s}
   .rsvp-card button:hover{background:#25733a;transform:translateY(-2px)}
 
   /* ===== 13. COUNTDOWN ===== */
-  #countdown{background:linear-gradient(180deg,#7b1e28,#4e0f17);color:#fbe7b8}
-  #countdown .sec-title{color:#f3cf7a}
-  .cd{display:flex;justify-content:center;gap:clamp(10px,3vw,28px);margin-top:34px;flex-wrap:wrap}
-  .cd div{min-width:clamp(70px,18vw,130px);padding:20px 10px;border:1.5px solid #c9973f;border-radius:14px;background:rgba(255,255,255,.06)}
-  .cd b{display:block;font-family:'Cinzel',serif;font-size:clamp(32px,6vw,56px);color:#fff1cc}
-  .cd span{font-family:'Cinzel',serif;font-size:clamp(11px,1.6vw,14px);letter-spacing:2px;color:#e7c27a}
+  #countdown{background:#f6efe3;padding:80px 20px 70px;text-align:center}
+  .cd{display:flex;justify-content:center;gap:clamp(18px,5vw,56px);margin-top:30px}
+  .cd b{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(38px,7vw,68px);color:var(--gold);line-height:1}
+  .cd span{display:block;margin-top:8px;font-family:'Playfair Display',serif;font-size:clamp(10px,1.4vw,13px);letter-spacing:3px;text-transform:uppercase;color:#8a6a4a}
 
   /* ===== 14. FINAL ===== */
-  #final{background:linear-gradient(180deg,#bfe3f2 0%,#d6eee6 45%,#a9d6a6 70%,#5fa7b8 100%)}
-  .sway{animation:sway 4s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
-  @keyframes sway{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
-  .lotus{animation:float 3.6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
-  @keyframes float{from{transform:translateY(0)}to{transform:translateY(-5px)}}
-  .final-text{position:absolute;left:0;right:0;bottom:5%;text-align:center;font-family:'Great Vibes',cursive;
-    font-size:clamp(40px,8vw,90px);color:#fff;text-shadow:0 3px 12px rgba(60,40,10,.55)}
+  #final .bg{background-image:url(images/elephant.jpg)}
+  .final-text{position:absolute;left:0;right:0;bottom:6%;z-index:1;text-align:center;font-family:'Great Vibes',cursive;
+    font-size:clamp(40px,7.5vw,92px);color:#fff;text-shadow:0 3px 16px rgba(40,20,10,.65)}
 
   @media (max-width:700px){
+    .photo,#meet .hallimg{aspect-ratio:auto;height:78vh;max-height:none}
+    #final .bg{background-position:62% center}
+    #walk .bg{background-position:52% center}
+    #peacocks .bg{background-position:48% center}
     .grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
     .ph.wide,.ph:nth-child(5){grid-column:span 2}
-    #hero .scene{height:46vh;width:100%}
     .bell.l2,.bell.r2{display:none}
-    .bell{width:48px}
-    .hero-text{padding-top:140px}
+    .bell{width:46px}
+    .hero-text{top:18%}
     .map iframe{height:300px}
-    .content{padding:70px 18px}
+    .meet-card{padding:34px 22px 30px}
   }
 </style>
 </head>
 <body>
 
-<!-- ============ SHARED SVG DEFINITIONS ============ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <linearGradient id="gGold" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#f4d283"/><stop offset=".55" stop-color="#cf9640"/><stop offset="1" stop-color="#9a6424"/>
-    </linearGradient>
-    <linearGradient id="gGoldH" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#a86f25"/><stop offset=".5" stop-color="#f6d98e"/><stop offset="1" stop-color="#a86f25"/>
-    </linearGradient>
-    <linearGradient id="gStone" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#dcc69c"/><stop offset="1" stop-color="#b09062"/>
-    </linearGradient>
     <linearGradient id="gBell" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#9a6424"/><stop offset=".45" stop-color="#ffe39a"/><stop offset="1" stop-color="#a86f25"/>
     </linearGradient>
     <linearGradient id="gRed" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#d4213c"/><stop offset="1" stop-color="#9a0f24"/>
+      <stop offset="0" stop-color="#c8243a"/><stop offset="1" stop-color="#7d0e1f"/>
     </linearGradient>
-    <linearGradient id="gCream" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#e9dbb8"/><stop offset=".5" stop-color="#fbf3df"/><stop offset="1" stop-color="#e2d1a8"/>
-    </linearGradient>
-    <linearGradient id="gCurtain" x1="0" y1="0" x2=".08" y2="0" spreadMethod="repeat">
-      <stop offset="0" stop-color="#7d0e1f"/><stop offset=".5" stop-color="#c8243a"/><stop offset="1" stop-color="#7d0e1f"/>
-    </linearGradient>
-    <radialGradient id="gGlow"><stop offset="0" stop-color="#fff6c8"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></radialGradient>
-    <linearGradient id="gWater" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#8fd3e0"/><stop offset="1" stop-color="#3f93a8"/>
-    </linearGradient>
-
-    <!-- Temple -->
-    <symbol id="temple" viewBox="0 0 300 260">
-      <rect x="10" y="238" width="280" height="22" fill="url(#gStone)"/>
-      <rect x="28" y="224" width="244" height="16" fill="url(#gGold)" stroke="#8a5a1c" stroke-width="1"/>
-      <rect x="35" y="170" width="60" height="54" fill="url(#gGold)" stroke="#8a5a1c" stroke-width="1"/>
-      <path d="M38 170C38 140 55 115 65 98C75 115 92 140 92 170Z" fill="url(#gGold)" stroke="#8a5a1c" stroke-width="1.5"/>
-      <ellipse cx="65" cy="96" rx="6" ry="3" fill="#b07a2a"/><circle cx="65" cy="90" r="3.5" fill="#e9b94d"/>
-      <path d="M58 224V200Q65 190 72 200V224Z" fill="#6b3d15"/>
-      <rect x="205" y="170" width="60" height="54" fill="url(#gGold)" stroke="#8a5a1c" stroke-width="1"/>
-      <path d="M208 170C208 140 225 115 235 98C245 115 262 140 262 170Z" fill="url(#gGold)" stroke="#8a5a1c" stroke-width="1.5"/>
-      <ellipse cx="235" cy="96" rx="6" ry="3" fill="#b07a2a"/><circle cx="235" cy="90" r="3.5" fill="#e9b94d"/>
-      <path d="M228 224V200Q235 190 242 200V224Z" fill="#6b3d15"/>
-      <rect x="88" y="150" width="124" height="74" fill="url(#gGold)" stroke="#8a5a1c" stroke-width="1.5"/>
-      <path d="M96 150C96 95 128 55 150 28C172 55 204 95 204 150Z" fill="url(#gGold)" stroke="#8a5a1c" stroke-width="2"/>
-      <g stroke="#8a5a1c" stroke-width="1.2" opacity=".55" fill="none">
-        <path d="M98 132H202M102 112H198M110 92H190M122 72H178M136 52H164M150 30V150"/>
-        <path d="M123 150C123 105 138 70 150 30M177 150C177 105 162 70 150 30"/>
-      </g>
-      <ellipse cx="150" cy="27" rx="13" ry="5" fill="#b07a2a"/>
-      <path d="M143 23Q150 9 157 23Z" fill="#e9b94d"/>
-      <line x1="150" y1="14" x2="150" y2="1" stroke="#6b3d15" stroke-width="1.5"/>
-      <path d="M150 1L167 5L150 10Z" fill="#e0531f"/>
-      <rect x="96" y="160" width="8" height="64" fill="#f3d48c"/><rect x="196" y="160" width="8" height="64" fill="#f3d48c"/>
-      <path d="M132 224V186Q150 164 168 186V224Z" fill="#5a3412"/>
-      <path d="M126 186Q150 158 174 186" fill="none" stroke="#f3d48c" stroke-width="3"/>
-    </symbol>
-
-    <!-- Bell -->
     <symbol id="bell" viewBox="0 0 60 172">
       <line x1="30" y1="0" x2="30" y2="96" stroke="#b8862f" stroke-width="3"/>
       <circle cx="30" cy="28" r="4.5" fill="#c4182f"/><circle cx="30" cy="56" r="4.5" fill="#c4182f"/><circle cx="30" cy="80" r="3.5" fill="#f7c21b"/>
@@ -234,33 +193,9 @@
       <rect x="5" y="152" width="50" height="9" rx="4.5" fill="#b07a22"/>
       <circle cx="30" cy="166" r="5.5" fill="#9a6424"/>
     </symbol>
-
-    <!-- Peacock (faces right) -->
-    <symbol id="peacock" viewBox="0 0 200 200" overflow="visible">
-      <g id="pcTail"></g>
-      <path d="M88 150Q50 172 14 182L22 190Q66 184 100 160Z" fill="#2f8a52"/>
-      <path d="M92 152Q60 178 34 194" stroke="#1d4fb8" stroke-width="2" fill="none" opacity=".6"/>
-      <ellipse cx="100" cy="138" rx="19" ry="27" fill="#1f5fbf"/>
-      <ellipse cx="96" cy="140" rx="10" ry="18" fill="#2b7bd8" opacity=".7"/>
-      <path d="M92 126Q94 96 108 80L117 84Q108 100 111 132Z" fill="#1f5fbf"/>
-      <circle cx="114" cy="80" r="8" fill="#1f5fbf"/>
-      <path d="M121 78L132 82L121 85Z" fill="#d8a24a"/>
-      <path d="M111 77Q115 74 119 77" stroke="#fff" stroke-width="2" fill="none"/>
-      <circle cx="116" cy="79" r="1.6" fill="#111"/>
-      <g stroke="#1f5fbf" stroke-width="1.4">
-        <line x1="112" y1="72" x2="106" y2="58"/><line x1="114" y1="72" x2="113" y2="56"/><line x1="116" y1="72" x2="120" y2="58"/>
-      </g>
-      <circle cx="106" cy="57" r="2.6" fill="#2fb36a"/><circle cx="113" cy="55" r="2.6" fill="#2fb36a"/><circle cx="120" cy="57" r="2.6" fill="#2fb36a"/>
-      <g stroke="#9a6a3a" stroke-width="3" stroke-linecap="round">
-        <line x1="96" y1="162" x2="93" y2="185"/><line x1="105" y1="162" x2="108" y2="185"/>
-      </g>
-    </symbol>
-
-    <!-- Couple silhouette for gallery placeholders -->
     <symbol id="coupleSil" viewBox="0 0 200 200">
       <g fill="rgba(255,250,240,.9)">
-        <ellipse cx="72" cy="46" rx="17" ry="13"/>
-        <circle cx="72" cy="58" r="13"/>
+        <ellipse cx="72" cy="46" rx="17" ry="13"/><circle cx="72" cy="58" r="13"/>
         <path d="M52 76Q72 68 92 76L98 170H46Z"/>
         <rect x="56" y="168" width="10" height="20"/><rect x="78" y="168" width="10" height="20"/>
         <path d="M118 52Q130 34 142 52Q150 80 154 104L110 104Q114 80 118 52Z"/>
@@ -269,88 +204,45 @@
         <path d="M100 98Q94 92 88 98Q82 104 100 116Q118 104 112 98Q106 92 100 98Z" fill="#fff"/>
       </g>
     </symbol>
+    <symbol id="sunburst" viewBox="0 0 170 40">
+      <g stroke="#c49a52" stroke-width="1" fill="none">
+        <path d="M0 30H66M104 30H170"/>
+        <path d="M85 30L60 12M85 30L66 6M85 30L73 2M85 30L79 0M85 30V0M85 30L91 0M85 30L97 2M85 30L104 6M85 30L110 12"/>
+        <path d="M60 30L64 26L68 30L64 34Z M102 30L106 26L110 30L106 34Z" fill="#c49a52"/>
+      </g>
+    </symbol>
   </defs>
 </svg>
 
-<!-- ============ SECTION 1: HERO ============ -->
+<!-- ============ 1. HERO ============ -->
 <section id="hero">
+  <div class="bg"></div>
   <svg id="garland" viewBox="0 0 1000 120" preserveAspectRatio="xMidYMin slice"></svg>
   <svg class="bell l1" viewBox="0 0 60 172"><use href="#bell"/></svg>
   <svg class="bell l2" viewBox="0 0 60 172"><use href="#bell"/></svg>
   <svg class="bell r1" viewBox="0 0 60 172"><use href="#bell"/></svg>
   <svg class="bell r2" viewBox="0 0 60 172"><use href="#bell"/></svg>
-
-  <svg class="bird" style="top:24%;animation-duration:19s" viewBox="0 0 40 20"><path d="M2 12Q10 2 20 12Q30 2 38 12" stroke="#6b7a88" stroke-width="2" fill="none"/></svg>
-  <svg class="bird" style="top:30%;width:26px;animation-duration:23s;animation-delay:-8s" viewBox="0 0 40 20"><path d="M2 12Q10 2 20 12Q30 2 38 12" stroke="#6b7a88" stroke-width="2" fill="none"/></svg>
-  <svg class="bird" style="top:20%;width:22px;animation-duration:27s;animation-delay:-15s" viewBox="0 0 40 20"><path d="M2 12Q10 2 20 12Q30 2 38 12" stroke="#7b8894" stroke-width="2" fill="none"/></svg>
-
+  <svg class="bird" style="top:30%;animation-duration:19s" viewBox="0 0 40 20"><path d="M2 12Q10 2 20 12Q30 2 38 12" stroke="#5c5047" stroke-width="2" fill="none"/></svg>
+  <svg class="bird" style="top:36%;width:24px;animation-duration:23s;animation-delay:-8s" viewBox="0 0 40 20"><path d="M2 12Q10 2 20 12Q30 2 38 12" stroke="#5c5047" stroke-width="2" fill="none"/></svg>
+  <svg class="bird" style="top:26%;width:20px;animation-duration:27s;animation-delay:-15s" viewBox="0 0 40 20"><path d="M2 12Q10 2 20 12Q30 2 38 12" stroke="#5c5047" stroke-width="2" fill="none"/></svg>
   <div class="hero-text">
-    <div class="name script">Deependra</div>
-    <div class="weds script">weds</div>
-    <div class="name script">Aishwarya</div>
+    <div class="name">Deependra</div>
+    <div class="weds">weds</div>
+    <div class="name b">Aishwarya</div>
     <div class="om">Om Shree Ganeshay Namah</div>
   </div>
-
-  <svg class="scene" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMax slice">
-    <polygon points="0,300 120,190 230,262 360,150 480,250 600,172 720,240 850,140 1000,250 1000,420 0,420" fill="#b8cfdd" opacity=".8"/>
-    <polygon points="0,345 150,262 300,330 450,282 600,330 760,268 900,320 1000,292 1000,420 0,420" fill="#a7c0ae" opacity=".85"/>
-    <rect x="0" y="380" width="1000" height="40" fill="#e8cf92"/>
-    <use href="#temple" x="320" y="118" width="360" height="312"/>
-  </svg>
 </section>
 
-<!-- ============ SECTION 2: COUPLE WALKING ============ -->
-<section id="walk">
-  <svg class="scene" id="walkSvg" viewBox="0 0 1000 700">
-    <use href="#temple" x="380" y="110" width="240" height="208" opacity=".9"/>
-    <rect x="0" y="310" width="1000" height="390" fill="#eed29a"/>
-    <path d="M0 310H1000" stroke="#d9b56a" stroke-width="2"/>
-    <!-- red carpet -->
-    <path d="M472 312H528L700 700H300Z" fill="url(#gRed)"/>
-    <path d="M478 312L318 700M522 312L682 700" stroke="#e9b94d" stroke-width="4"/>
-    <g id="pots"></g>
-    <!-- couple (from behind) -->
-    <g class="couple">
-      <!-- groom -->
-      <rect x="440" y="575" width="12" height="36" fill="#efe2c4"/><rect x="458" y="575" width="12" height="36" fill="#efe2c4"/>
-      <ellipse cx="446" cy="612" rx="9" ry="4" fill="#b98a3a"/><ellipse cx="464" cy="612" rx="9" ry="4" fill="#b98a3a"/>
-      <path d="M427 460Q414 510 419 562L430 562Q428 512 438 472Z" fill="url(#gCream)" stroke="#cdb27a" stroke-width="1"/>
-      <circle cx="424" cy="566" r="5.5" fill="#d9a27a"/>
-      <path d="M484 460Q500 498 507 526L498 531Q488 505 474 472Z" fill="url(#gCream)" stroke="#cdb27a" stroke-width="1"/>
-      <path d="M425 456Q455 444 485 456L493 586H417Z" fill="url(#gCream)" stroke="#c9a35a" stroke-width="1.5"/>
-      <path d="M455 452V586" stroke="#d8c294" stroke-width="1.2"/>
-      <path d="M418 578H492" stroke="#d4a64a" stroke-width="5"/>
-      <rect x="448" y="430" width="14" height="20" fill="#d9a27a"/>
-      <ellipse cx="455" cy="428" rx="16" ry="17" fill="#2b1a10"/>
-      <ellipse cx="455" cy="414" rx="21" ry="16" fill="#e8b04a"/>
-      <path d="M436 412Q455 404 474 412M436 420Q455 412 474 420" stroke="#c48a2a" stroke-width="2" fill="none"/>
-      <path d="M459 424Q472 462 464 494L456 492Q463 462 451 428Z" fill="#dc9d35"/>
-      <!-- bride -->
-      <path d="M538 466Q555 458 572 466L576 524H534Z" fill="#a8122a"/>
-      <path d="M535 520Q518 562 494 616Q555 632 616 616Q592 562 575 520Z" fill="url(#gRed)"/>
-      <path d="M500 604Q555 620 610 604" stroke="#e9b94d" stroke-width="7" fill="none"/>
-      <g fill="#f3cf7a"><circle cx="530" cy="570" r="2.2"/><circle cx="555" cy="582" r="2.2"/><circle cx="580" cy="570" r="2.2"/><circle cx="545" cy="548" r="2"/><circle cx="567" cy="548" r="2"/><circle cx="518" cy="592" r="2.2"/><circle cx="594" cy="592" r="2.2"/></g>
-      <rect x="549" y="448" width="12" height="16" fill="#d9a27a"/>
-      <circle cx="555" cy="440" r="16" fill="#2b1a10"/>
-      <circle cx="555" cy="452" r="9" fill="#1f120a"/>
-      <path d="M538 434Q555 414 572 434Q590 502 600 600Q555 612 512 600Q522 502 538 434Z" fill="#d01c3a" opacity=".82" stroke="#e9b94d" stroke-width="3"/>
-      <g fill="#f3cf7a" opacity=".9"><circle cx="548" cy="470" r="1.6"/><circle cx="564" cy="490" r="1.6"/><circle cx="540" cy="515" r="1.6"/><circle cx="572" cy="530" r="1.6"/><circle cx="550" cy="555" r="1.6"/><circle cx="580" cy="575" r="1.6"/><circle cx="530" cy="580" r="1.6"/></g>
-      <path d="M540 470Q524 500 511 528L518 533Q533 505 549 480Z" fill="#d9a27a"/>
-      <rect x="512" y="520" width="8" height="4" fill="#c4182f" transform="rotate(-55 516 522)"/>
-      <path d="M570 470Q586 505 583 546L575 546Q577 506 562 480Z" fill="#d9a27a"/>
-      <circle cx="579" cy="549" r="5" fill="#d9a27a"/>
-      <circle cx="505" cy="530" r="6.5" fill="#d9a27a"/>
-    </g>
-  </svg>
-</section>
+<!-- ============ 2. COUPLE WALKING ============ -->
+<section id="walk" class="photo"><div class="bg zoom"></div></section>
 
-<!-- ============ SECTION 3: GANESH ============ -->
-<section id="ganesh" class="content">
+<!-- ============ 3. GANESH ============ -->
+<section id="ganesh">
+  <div class="bg zoom"></div>
   <div class="g-card reveal">
     <svg viewBox="0 0 120 120" aria-hidden="true">
       <g fill="none" stroke="#b5842f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M46 31L60 8L74 31Z" fill="#f3d48c"/>
-        <circle cx="60" cy="8" r="3" fill="#e9b94d"/>
+        <path d="M46 31L60 8L74 31Z" fill="#f3d48c"/><circle cx="60" cy="8" r="3" fill="#e9b94d"/>
         <path d="M43 31H77"/>
         <path d="M42 40Q14 34 17 60Q21 80 44 63" fill="#fbe9c2"/>
         <path d="M78 40Q106 34 103 60Q99 80 76 63" fill="#fbe9c2"/>
@@ -358,8 +250,7 @@
         <path d="M51 46Q54 43 57 46M63 46Q66 43 69 46"/>
         <path d="M60 33V40" stroke="#c4182f"/>
         <path d="M55 62Q52 86 60 96Q70 106 81 94Q85 88 79 86"/>
-        <path d="M65 62Q63 82 67 90"/>
-        <path d="M47 64Q42 72 46 76"/>
+        <path d="M65 62Q63 82 67 90"/><path d="M47 64Q42 72 46 76"/>
       </g>
     </svg>
     <div class="shloka">
@@ -370,8 +261,9 @@
   </div>
 </section>
 
-<!-- ============ SECTION 4: INVITATION TEXT ============ -->
-<section id="invite" class="content">
+<!-- ============ 4. INVITATION TEXT ============ -->
+<section id="invite">
+  <div class="bg"></div>
   <div class="inv">
     <p class="reveal">We request your gracious presence and blessings<br>on the auspicious occasion of the wedding of</p>
     <div class="reveal">
@@ -380,118 +272,65 @@
     </div>
     <div class="with reveal">with</div>
     <div class="reveal">
-      <div class="who" style="margin-top:6px">Deependra Shahi</div>
+      <div class="who" style="margin-top:4px">Deependra Shahi</div>
       <div class="par">S/O MR. DEVENDRA SHAHI &amp; MRS. SARITA SHAHI</div>
     </div>
     <p class="quote reveal">When two hearts choose each other, even destiny finds a way</p>
-    <p class="comp reveal">With Best Compliments from<br>all Shahi Family &amp; Friends</p>
+    <p class="comp reveal">With Best Compliments from<br><b>all Shahi Family &amp; Friends</b></p>
   </div>
 </section>
 
-<!-- ============ SECTION 5: PEACOCKS ============ -->
-<section id="peacocks">
-  <svg class="scene" id="peaSvg" viewBox="0 0 1000 600">
-    <rect width="1000" height="330" fill="#d6efe6"/>
-    <g id="treeline"></g>
-    <rect y="320" width="1000" height="280" fill="#6fb85e"/>
-    <rect y="460" width="1000" height="140" fill="#4f9a45"/>
-    <ellipse cx="500" cy="500" rx="300" ry="46" fill="#8fd0e0"/>
-    <!-- domes (chhatris) -->
-    <g id="domeL">
-      <rect x="40" y="418" width="160" height="18" fill="#d8c8a8"/>
-      <rect x="50" y="300" width="10" height="118" fill="#efe3c8"/><rect x="90" y="300" width="10" height="118" fill="#efe3c8"/>
-      <rect x="140" y="300" width="10" height="118" fill="#efe3c8"/><rect x="180" y="300" width="10" height="118" fill="#efe3c8"/>
-      <rect x="40" y="290" width="160" height="14" fill="#d8c8a8"/>
-      <path d="M50 290Q50 215 120 205Q190 215 190 290Z" fill="#f7efe0" stroke="#cbb68e" stroke-width="2"/>
-      <path d="M120 205V182" stroke="#c9973f" stroke-width="3"/><circle cx="120" cy="180" r="5" fill="#e9b94d"/>
-    </g>
-    <use href="#domeL" transform="translate(1000 0) scale(-1 1)"/>
-    <!-- bridge -->
-    <path d="M230 422Q500 366 770 422L770 488H648Q640 412 500 410Q360 412 352 488H230Z" fill="url(#gStone)" stroke="#9b7e55" stroke-width="2"/>
-    <path d="M352 488Q360 420 500 418Q640 420 648 488" fill="none" stroke="#8a6d45" stroke-width="3"/>
-    <path d="M220 402Q500 342 780 402L780 424Q500 366 220 424Z" fill="#cdb88f" stroke="#9b7e55" stroke-width="2"/>
-    <g id="balusters"></g>
-    <path d="M220 362Q500 302 780 362" stroke="#bda57a" stroke-width="10" fill="none" stroke-linecap="round"/>
-    <!-- peacocks -->
-    <g><g class="pbob"><use href="#peacock" x="270" y="153" width="240" height="240"/></g></g>
-    <g transform="translate(1000 0) scale(-1 1)"><g class="pbob b"><use href="#peacock" x="270" y="153" width="240" height="240"/></g></g>
-    <g id="gardenFlowers"></g>
-  </svg>
-</section>
+<!-- ============ 5. PEACOCKS ============ -->
+<section id="peacocks" class="photo"><div class="bg zoom"></div></section>
 
-<!-- ============ SECTION 6: JOURNEY TITLE ============ -->
-<section id="journey" class="content">
+<!-- ============ 6. JOURNEY TITLE ============ -->
+<section id="journey">
   <h2 class="sec-title reveal">A Journey of Celebration</h2>
   <p class="sub reveal">Mark Your Calendars, We Can't Wait to Celebrate</p>
 </section>
 
-<!-- ============ SECTION 7: EVENTS ============ -->
-<section id="events" class="content">
+<!-- ============ 7. EVENTS ============ -->
+<section id="events">
   <div class="event reveal">
-    <h3>Wedding Ceremony</h3>
+    <h3>Wedding<br>Ceremony</h3>
     <div class="d">Friday, 11 December 2026</div>
     <div class="t">07:00 PM Onwards</div>
     <div class="v">GRANVIA RESORT</div>
     <div class="a">Baghagada to Sahjanwa Road Near Tenua Toll Plaza,<br>Gorakhpur, Uttar Pradesh</div>
+    <svg class="sunburst" viewBox="0 0 170 40"><use href="#sunburst"/></svg>
   </div>
-</section>
-
-<!-- ============ SECTION 8: FLORAL STAGE ============ -->
-<section id="stage">
-  <svg class="scene" viewBox="0 0 1000 700">
-    <rect width="1000" height="700" fill="#f8e6de"/>
-    <rect y="600" width="1000" height="100" fill="#e6c49a"/>
-    <g id="arch"></g>
-    <!-- stage -->
-    <rect x="220" y="560" width="560" height="44" rx="6" fill="url(#gGold)" stroke="#8a5a1c" stroke-width="1.5"/>
-    <rect x="200" y="600" width="600" height="18" rx="4" fill="#b07a2a"/>
-    <!-- sofa -->
-    <g id="sofa">
-      <path d="M330 472Q330 380 420 386Q500 338 580 386Q670 380 670 472Z" fill="url(#gGold)" stroke="#8a5a1c" stroke-width="2"/>
-      <path d="M352 472Q354 404 426 406Q500 368 574 406Q646 404 648 472Z" fill="#b3122d"/>
-      <rect x="318" y="468" width="364" height="42" rx="12" fill="#c4182f"/>
-      <rect x="312" y="504" width="376" height="24" rx="8" fill="url(#gGold)" stroke="#8a5a1c" stroke-width="1.5"/>
-      <rect x="296" y="436" width="46" height="84" rx="22" fill="url(#gGold)" stroke="#8a5a1c" stroke-width="1.5"/>
-      <rect x="658" y="436" width="46" height="84" rx="22" fill="url(#gGold)" stroke="#8a5a1c" stroke-width="1.5"/>
-      <rect x="380" y="426" width="72" height="48" rx="14" fill="#d11f3a" stroke="#e9b94d" stroke-width="2.5" transform="rotate(-8 416 450)"/>
-      <rect x="548" y="426" width="72" height="48" rx="14" fill="#d11f3a" stroke="#e9b94d" stroke-width="2.5" transform="rotate(8 584 450)"/>
-      <rect x="326" y="526" width="12" height="34" fill="#9a6424"/><rect x="662" y="526" width="12" height="34" fill="#9a6424"/>
+  <svg class="lotus-ic reveal" viewBox="0 0 60 40" aria-hidden="true">
+    <g fill="#e8608f" stroke="#c94377" stroke-width=".8">
+      <path d="M30 36C22 28 22 14 30 4C38 14 38 28 30 36Z"/>
+      <path d="M30 36C20 34 12 24 12 12C22 16 28 26 30 36Z"/><path d="M30 36C40 34 48 24 48 12C38 16 32 26 30 36Z"/>
+      <path d="M30 36C18 37 6 32 2 22C14 22 24 28 30 36Z" fill="#f28db3"/><path d="M30 36C42 37 54 32 58 22C46 22 36 28 30 36Z" fill="#f28db3"/>
     </g>
-    <!-- chandelier -->
-    <g id="chand">
-      <line x1="500" y1="0" x2="500" y2="96" stroke="#b8862f" stroke-width="3"/>
-      <circle cx="500" cy="150" r="80" fill="url(#gGlow)" opacity=".7"/>
-      <path d="M470 96H530L522 110H478Z" fill="url(#gGold)"/>
-      <ellipse cx="500" cy="118" rx="45" ry="8" fill="url(#gGold)"/>
-      <ellipse cx="500" cy="144" rx="72" ry="11" fill="url(#gGold)"/>
-      <path d="M440 144Q500 210 560 144" fill="none" stroke="#c9973f" stroke-width="3"/>
-      <ellipse cx="500" cy="176" rx="26" ry="6" fill="url(#gGold)"/>
-      <path d="M494 182L500 200L506 182Z" fill="#e9b94d"/>
-      <g id="crystals"></g>
-    </g>
-    <!-- curtains -->
-    <g id="curL">
-      <rect x="0" y="0" width="502" height="700" fill="url(#gCurtain)"/>
-      <rect x="486" y="0" width="16" height="700" fill="url(#gGoldH)"/>
-      <rect x="0" y="672" width="502" height="28" fill="url(#gGold)"/>
-    </g>
-    <g id="curR">
-      <rect x="498" y="0" width="502" height="700" fill="url(#gCurtain)"/>
-      <rect x="498" y="0" width="16" height="700" fill="url(#gGoldH)"/>
-      <rect x="498" y="672" width="502" height="28" fill="url(#gGold)"/>
-    </g>
-    <g id="valance"></g>
   </svg>
 </section>
 
-<!-- ============ SECTION 9: MEET THE COUPLE ============ -->
-<section id="meet" class="content">
-  <h2 class="sec-title reveal">Meet the BRIDE &amp; GROOM</h2>
-  <p class="reveal">Our hearts are full and our smiles wide, we can hardly believe our dreamy eyed teen selves made it here! We're ready to make memories that last a lifetime, and they'll be incomplete without you by our side. Come celebrate our love, share our joy, eat till you can't move and help us make this day a beautiful, laughter-filled blur we'll never forget!</p>
+<!-- ============ 8. FLORAL STAGE ============ -->
+<section id="stage" class="photo">
+  <div class="bg zoom"></div>
+  <div class="cur l"></div><div class="cur r"></div>
+  <svg class="valance" id="valance" viewBox="0 0 1000 60" preserveAspectRatio="none"></svg>
 </section>
 
-<!-- ============ SECTION 10: PHOTO GALLERY ============ -->
-<!-- Apni photos "photos" folder me 1.jpg ... 6.jpg naam se rakhein; woh apne aap dikh jayengi -->
+<!-- ============ 9. MEET THE COUPLE ============ -->
+<section id="meet">
+  <div class="hallimg">
+    <div class="bg zoom"></div>
+    <h2 class="reveal">Meet the<span>BRIDE &amp; GROOM</span></h2>
+  </div>
+  <div id="meetWrap">
+    <div class="meet-card reveal">
+      <p>Our hearts are full and our smiles wide, we can hardly believe our dreamy eyed teen selves made it here! We're ready to make memories that last a lifetime, and they'll be incomplete without you by our side. Come celebrate our love, share our joy, eat till you can't move and help us make this day a beautiful, laughter-filled blur we'll never forget!</p>
+      <svg class="sunburst" viewBox="0 0 170 40"><use href="#sunburst"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. PHOTO GALLERY ============ -->
+<!-- Photos "photos" folder me 1.jpg ... 6.jpg naam se rakhein -->
 <section id="gallery">
   <div class="grid">
     <figure class="ph tall reveal" data-photo="photos/1.jpg"><svg viewBox="0 0 200 200"><use href="#coupleSil"/></svg></figure>
@@ -503,8 +342,8 @@
   </div>
 </section>
 
-<!-- ============ SECTION 11: VENUE ============ -->
-<section id="venue" class="content">
+<!-- ============ 11. VENUE ============ -->
+<section id="venue">
   <h2 class="sec-title reveal">Looking forward to see you</h2>
   <div class="map reveal">
     <iframe loading="lazy" title="Map" src="https://www.google.com/maps?q=Granvia+Resort+Tenua+Toll+Plaza+Gorakhpur&amp;output=embed"></iframe>
@@ -516,76 +355,30 @@
   </div>
 </section>
 
-<!-- ============ SECTION 12: RSVP ============ -->
-<section id="rsvp" class="content">
+<!-- ============ 12. RSVP ============ -->
+<section id="rsvp">
   <form class="rsvp-card reveal" id="rsvpForm">
-    <h2 class="sec-title">Please confirm your presence</h2>
+    <h2>Please confirm your presence</h2>
     <label>Full Name<input type="text" id="rName" required></label>
     <label>No. of People<input type="number" id="rCount" min="1" required></label>
     <button type="submit">Confirm</button>
   </form>
 </section>
 
-<!-- ============ SECTION 13: COUNTDOWN ============ -->
-<section id="countdown" class="content">
+<!-- ============ 13. COUNTDOWN ============ -->
+<section id="countdown">
   <h2 class="sec-title reveal">The Countdown to forever begins</h2>
   <div class="cd reveal">
     <div><b id="cdD">0</b><span>Days</span></div>
-    <div><b id="cdH">0</b><span>Hours</span></div>
-    <div><b id="cdM">0</b><span>Minutes</span></div>
-    <div><b id="cdS">0</b><span>Seconds</span></div>
+    <div><b id="cdH">00</b><span>Hours</span></div>
+    <div><b id="cdM">00</b><span>Minutes</span></div>
+    <div><b id="cdS">00</b><span>Seconds</span></div>
   </div>
 </section>
 
-<!-- ============ SECTION 14: FINAL SCENE ============ -->
-<section id="final">
-  <svg class="scene" id="finalSvg" viewBox="0 0 1000 650">
-    <path d="M0 330Q160 260 320 320Q500 250 680 310Q850 255 1000 320V420H0Z" fill="#9ccf9a" opacity=".8"/>
-    <use href="#temple" x="70" y="210" width="190" height="165" opacity=".85"/>
-    <!-- gazebo -->
-    <g opacity=".95">
-      <rect x="760" y="360" width="140" height="14" fill="#e8dcc4"/>
-      <rect x="772" y="290" width="8" height="70" fill="#fffaf0"/><rect x="812" y="290" width="8" height="70" fill="#fffaf0"/>
-      <rect x="840" y="290" width="8" height="70" fill="#fffaf0"/><rect x="880" y="290" width="8" height="70" fill="#fffaf0"/>
-      <rect x="764" y="282" width="132" height="10" fill="#e8dcc4"/>
-      <path d="M772 282Q772 236 830 228Q888 236 888 282Z" fill="#fffaf0" stroke="#d6c7a6" stroke-width="2"/>
-      <path d="M830 228V210" stroke="#c9973f" stroke-width="3"/><circle cx="830" cy="208" r="4" fill="#e9b94d"/>
-    </g>
-    <rect y="370" width="1000" height="90" fill="#86c27f"/>
-    <ellipse cx="500" cy="560" rx="580" ry="135" fill="url(#gWater)"/>
-    <!-- elephant -->
-    <g transform="translate(290 205)">
-      <g class="sway">
-        <line x1="64" y1="140" x2="48" y2="222" stroke="#7d7f89" stroke-width="6" stroke-linecap="round"/>
-        <rect x="98" y="196" width="46" height="116" rx="14" fill="#7d7f89"/>
-        <rect x="236" y="196" width="46" height="116" rx="14" fill="#7d7f89"/>
-        <ellipse cx="200" cy="150" rx="140" ry="96" fill="#8d8f99"/>
-        <rect x="150" y="200" width="48" height="114" rx="14" fill="#8d8f99"/>
-        <rect x="282" y="196" width="48" height="118" rx="14" fill="#8d8f99"/>
-        <g fill="#e9b94d"><rect x="150" y="280" width="48" height="7"/><rect x="282" y="282" width="48" height="7"/><rect x="98" y="278" width="46" height="6"/><rect x="236" y="278" width="46" height="6"/></g>
-        <circle cx="340" cy="118" r="70" fill="#8d8f99"/>
-        <path d="M392 140Q424 222 396 292Q388 306 376 298Q394 230 364 166Z" fill="#8d8f99"/>
-        <path d="M371 172Q392 200 412 188" stroke="#fffaf0" stroke-width="8" fill="none" stroke-linecap="round"/>
-        <ellipse cx="300" cy="128" rx="42" ry="58" fill="#7d7f89"/>
-        <circle cx="362" cy="104" r="4.5" fill="#222"/>
-        <!-- caparison -->
-        <path d="M108 66Q200 34 290 66L300 192Q200 212 98 192Z" fill="#c4182f" stroke="#e9b94d" stroke-width="6"/>
-        <path d="M128 86Q200 62 272 86L278 172Q200 188 120 172Z" fill="none" stroke="#e9b94d" stroke-width="2.5" stroke-dasharray="6 5"/>
-        <g fill="#e9b94d"><circle cx="200" cy="126" r="16"/><circle cx="200" cy="126" r="8" fill="#1f7a4d"/><circle cx="150" cy="118" r="6"/><circle cx="250" cy="118" r="6"/></g>
-        <g id="fringe" fill="#e9b94d"></g>
-        <!-- forehead ornament -->
-        <path d="M344 52L392 70L372 140Q360 120 344 52Z" fill="#e9b94d" stroke="#b07a22" stroke-width="2"/>
-        <circle cx="372" cy="86" r="7" fill="#c4182f"/><circle cx="376" cy="112" r="5" fill="#1f7a4d"/>
-        <g fill="#f3cf7a"><circle cx="384" cy="150" r="3"/><circle cx="388" cy="166" r="3"/><circle cx="392" cy="182" r="3"/></g>
-      </g>
-    </g>
-    <!-- water in front of legs -->
-    <path d="M0 505Q500 470 1000 505V650H0Z" fill="url(#gWater)" opacity=".88"/>
-    <g fill="none" stroke="#c9eef5" stroke-width="2" opacity=".7">
-      <ellipse cx="460" cy="512" rx="60" ry="7"/><ellipse cx="600" cy="514" rx="55" ry="7"/>
-    </g>
-    <g id="lotuses"></g>
-  </svg>
+<!-- ============ 14. FINAL SCENE ============ -->
+<section id="final" class="photo">
+  <div class="bg zoom"></div>
   <div class="final-text">Deependra ❤️ Aishwarya</div>
 </section>
 
@@ -593,139 +386,64 @@
 (function(){
   const NS='http://www.w3.org/2000/svg';
   function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
-  function flower(p,x,y,r,petal,center){
-    const g=el('g',{transform:`translate(${x} ${y})`},p);
+  function flower(p,x,y,r,petal,center){const g=el('g',{transform:`translate(${x} ${y})`},p);
     for(let i=0;i<6;i++)el('ellipse',{cx:0,cy:-r*.52,rx:r*.36,ry:r*.56,fill:petal,transform:`rotate(${i*60})`},g);
-    el('circle',{r:r*.3,fill:center},g);return g;
-  }
+    el('circle',{r:r*.3,fill:center},g);}
   function marigold(p,x,y,r,c){el('circle',{cx:x,cy:y,r:r,fill:c},p);el('circle',{cx:x,cy:y,r:r*.55,fill:'none',stroke:'rgba(140,60,0,.35)','stroke-width':1.2},p);}
-  // deterministic random
-  let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
 
-  /* ---- Hero garland ---- */
-  const gar=document.getElementById('garland');
-  const cols=['#f39c12','#f7c21b','#e8590c','#fbd34d'];
+  /* Hero garland */
+  const gar=document.getElementById('garland');const cols=['#f39c12','#f7c21b','#e8590c','#fbd34d'];
   [[0,250],[250,500],[500,750],[750,1000]].forEach(([a,b])=>{
-    for(let i=0;i<=20;i++){const t=i/20,x=a+(b-a)*t,y=12+248*t*(1-t);
-      if(i%2)el('ellipse',{cx:x,cy:y+8,rx:4,ry:9,fill:'#4f8a2b',transform:`rotate(${(t-.5)*70} ${x} ${y+8})`},gar);}
+    for(let i=1;i<=20;i+=2){const t=i/20,x=a+(b-a)*t,y=12+248*t*(1-t);
+      el('ellipse',{cx:x,cy:y+8,rx:4,ry:9,fill:'#4f8a2b',transform:`rotate(${(t-.5)*70} ${x} ${y+8})`},gar);}
     for(let i=0;i<=20;i++){const t=i/20;marigold(gar,a+(b-a)*t,12+248*t*(1-t),9.5,cols[i%4]);}
   });
   for(let x=0;x<=1000;x+=13)marigold(gar,x,7,8,cols[Math.round(x/13)%4]);
   [250,500,750].forEach(x=>{for(let y=20;y<=92;y+=11)marigold(gar,x,y,6.5,cols[Math.round(y/11)%4]);flower(gar,x,104,13,'#e8466d','#f7c21b');});
 
-  /* ---- Flower pots along the carpet ---- */
-  const pots=document.getElementById('pots');
-  for(let i=0;i<5;i++){
-    const t=i/4,y=360+t*300,s=.35+.65*t,edge=(y-312)/388*172;
-    [[500-28-edge-60*s,-1],[500+28+edge+60*s,1]].forEach(([x])=>{
-      const g=el('g',{transform:`translate(${x} ${y}) scale(${s})`},pots);
-      el('path',{d:'M-26 0H26L18 44H-18Z',fill:'#c9883a',stroke:'#8a5a1c','stroke-width':2},g);
-      el('rect',{x:-30,y:-6,width:60,height:10,rx:3,fill:'#e0a54b'},g);
-      el('ellipse',{cx:0,cy:-26,rx:36,ry:28,fill:'#4f8a2b'},g);
-      [[-20,-30,'#e8466d'],[0,-44,'#f7c21b'],[20,-30,'#f39c12'],[-8,-18,'#ffffff'],[12,-14,'#e8466d'],[-24,-12,'#f7c21b'],[24,-10,'#ffffff'],[8,-34,'#e8466d']]
-        .forEach(([fx,fy,c])=>flower(g,fx,fy,10,c,'#fbd34d'));
-    });
-  }
-
-  /* ---- Peacock tail ---- */
-  const tail=document.getElementById('pcTail');
-  [[92,1],[66,.8]].forEach(([len,sc])=>{
-    for(let a=-172;a<=-8;a+=(sc===1?9:12)){
-      const r=a*Math.PI/180,x=100+Math.cos(r)*len,y=128+Math.sin(r)*len;
-      el('line',{x1:100,y1:128,x2:x,y2:y,stroke:'#3a9a5c','stroke-width':2.4},tail);
-      const g=el('g',{transform:`translate(${x} ${y}) rotate(${a+90})`},tail);
-      el('ellipse',{rx:9*sc+2,ry:13*sc+2,fill:'#2fa064'},g);
-      el('ellipse',{rx:6*sc+1,ry:9*sc+1,fill:'#e9b94d'},g);
-      el('ellipse',{rx:4.5*sc+1,ry:7*sc+1,fill:'#1d4fb8'},g);
-      el('circle',{r:2.5*sc+.5,fill:'#0b1a3a'},g);
-    }
-  });
-
-  /* ---- Peacock scene: trees, balusters, flowers ---- */
-  const tl=document.getElementById('treeline');
-  for(let x=-20;x<=1020;x+=38)el('circle',{cx:x,cy:322-rnd()*30,r:30+rnd()*18,fill:rnd()>.5?'#5aa35a':'#4b924d'},tl);
-  const bal=document.getElementById('balusters');
-  for(let i=1;i<20;i++){const t=i/20,x=220+560*t,yTop=362-120*t*(1-t),yBot=402-120*t*(1-t);
-    el('rect',{x:x-4,y:yTop,width:8,height:yBot-yTop,rx:3,fill:'#d6c39c',stroke:'#9b7e55','stroke-width':1},bal);}
-  const gf=document.getElementById('gardenFlowers');
-  for(let i=0;i<46;i++){const x=rnd()*1000,y=470+rnd()*125;if(x>200&&x<800&&y<545)continue;
-    flower(gf,x,y,5+rnd()*5,['#e8466d','#f7c21b','#ffffff','#f39c12'][i%4],'#fbd34d');}
-
-  /* ---- Stage: arch, crystals, valance ---- */
-  const arch=document.getElementById('arch');
-  for(let a=0;a<=180;a+=4){const r=a*Math.PI/180;
-    el('ellipse',{cx:500+Math.cos(r)*352,cy:640-Math.sin(r)*545,rx:10,ry:18,fill:'#5a9a3e',transform:`rotate(${-a+90} ${500+Math.cos(r)*352} ${640-Math.sin(r)*545})`},arch);}
-  [[345,'#f7a8c4',22],[310,'#ffffff',20],[378,'#fbd3e1',17]].forEach(([R,c,fr],k)=>{
-    for(let a=0;a<=180;a+=fr>20?5:6){const r=(a+k*2)*Math.PI/180,R2=R*(545/352);
-      flower(arch,500+Math.cos(r)*R,640-Math.sin(r)*R2,fr,(a/5+k)%3===0?'#ffffff':c,'#f3cf7a');}
-  });
-  const cr=document.getElementById('crystals');
-  for(let i=0;i<=14;i++){const t=i/14,x=432+136*t,y=144+Math.sin(t*Math.PI)*10;
-    el('line',{x1:x,y1:y,x2:x,y2:y+16,stroke:'#f3e2b0','stroke-width':1},cr);
-    el('path',{d:`M${x-3} ${y+16}L${x} ${y+25}L${x+3} ${y+16}L${x} ${y+12}Z`,fill:'#ffffff',stroke:'#e6d2a0','stroke-width':.8},cr);}
-  for(let i=0;i<7;i++){const x=446+i*18;el('rect',{x:x-2.5,y:126,width:5,height:12,fill:'#fff8e6'},cr);el('circle',{cx:x,cy:122,r:4,fill:'#ffd75e'},cr);}
+  /* Stage valance */
   const val=document.getElementById('valance');
-  el('rect',{x:0,y:0,width:1000,height:30,fill:'#8c1022'},val);
+  el('rect',{x:0,y:0,width:1000,height:18,fill:'#7d0e1f'},val);
   for(let x=0;x<1000;x+=100){
-    el('path',{d:`M${x} 26Q${x+50} 96 ${x+100} 26Z`,fill:'url(#gRed)',stroke:'#e9b94d','stroke-width':3},val);
-    el('circle',{cx:x+100,cy:30,r:7,fill:'#e9b94d'},val);
-    el('path',{d:`M${x+100} 36L${x+96} 58H${x+104}Z`,fill:'#e9b94d'},val);
+    el('path',{d:`M${x} 14Q${x+50} 58 ${x+100} 14Z`,fill:'url(#gRed)',stroke:'#e9b94d','stroke-width':2.5},val);
+    el('circle',{cx:x+100,cy:16,r:5,fill:'#e9b94d'},val);
   }
 
-  /* ---- Elephant fringe ---- */
-  const fr=document.getElementById('fringe');
-  for(let i=0;i<=16;i++){const t=i/16,x=98+202*t,y=192+16*Math.sin(t*Math.PI);el('circle',{cx:x,cy:y+6,r:4},fr);}
-
-  /* ---- Lotuses ---- */
-  const lo=document.getElementById('lotuses');const pts=[];
-  for(let n=0;pts.length<34&&n<600;n++){
-    const x=20+rnd()*960,y=470+rnd()*170;
-    if(((x-500)/570)**2+((y-560)/128)**2>1)continue;
-    if(x>370&&x<720&&y<520)continue;
-    if(pts.some(p=>Math.hypot(p[0]-x,p[1]-y)<48))continue;
-    pts.push([x,y]);
-  }
-  pts.sort((a,b)=>a[1]-b[1]).forEach(([x,y],i)=>{
-    const s=.55+(y-470)/170*.75;
-    const o=el('g',{transform:`translate(${x} ${y}) scale(${s})`},lo);
-    const g=el('g',{class:'lotus',style:`animation-delay:${-(i*0.37)%3.6}s`},o);
-    el('ellipse',{cx:6,cy:4,rx:26,ry:8,fill:'#3f8f4f'},g);
-    [-62,-32,32,62,0].forEach(a=>el('ellipse',{cx:0,cy:-12,rx:7,ry:15,fill:a===0?'#f8b6cf':'#f28db3',stroke:'#dd6b98','stroke-width':1,transform:`rotate(${a})`},g));
-    [-18,18].forEach(a=>el('ellipse',{cx:0,cy:-10,rx:5.5,ry:12,fill:'#fbd0e0',transform:`rotate(${a})`},g));
-    el('circle',{cx:0,cy:-4,r:3,fill:'#f7c21b'},g);
-  });
-
-  /* ---- Scroll reveal ---- */
+  /* Reveal on scroll */
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
   document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
   const stage=document.getElementById('stage');
-  new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){stage.classList.add('play');o.disconnect();}}),{threshold:.35}).observe(stage);
+  new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){stage.classList.add('play');o.disconnect();}}),{threshold:.45}).observe(stage);
 
-  /* ---- Gallery photos (photos/1.jpg ... 6.jpg) ---- */
-  document.querySelectorAll('.ph[data-photo]').forEach(f=>{
-    const img=new Image();
-    img.onload=()=>{f.style.backgroundImage=`url("${f.dataset.photo}")`;f.classList.add('has-photo');};
-    img.src=f.dataset.photo;
-  });
-
-  /* ---- RSVP: WhatsApp par bhejta hai ---- */
-  document.getElementById('rsvpForm').addEventListener('submit',e=>{
-    e.preventDefault();
-    const name=document.getElementById('rName').value.trim();
-    const n=document.getElementById('rCount').value;
-    const msg=`Full Name: ${name}\nNo. of People: ${n}`;
-    window.open('https://wa.me/918009539099?text='+encodeURIComponent(msg),'_blank');
-  });
-
-  /* ---- Countdown ---- */
-  const target=new Date('2026-12-11T19:00:00+05:30').getTime();
-  const pad=v=>String(v).padStart(2,'0');
-  function tick(){
-    let d=Math.max(0,target-Date.now());
-    const D=Math.floor(d/864e5);d%=864e5;const H=Math.floor(d/36e5);d%=36e5;const M=Math.floor(d/6e4);d%=6e4;const S=Math.floor(d/1e3);
-    cdD.textContent=D;cdH.textContent=pad(H);cdM.textContent=pad(M);cdS.textContent=pad(S);
+  /* Slow zoom + parallax of photo scenes while scrolling */
+  const zs=[...document.querySelectorAll('.bg.zoom')];
+  let ticking=false;
+  function upd(){
+    const vh=innerHeight;
+    zs.forEach(b=>{const r=b.parentElement.getBoundingClientRect();
+      if(r.bottom<0||r.top>vh)return;
+      const p=Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height)));
+      b.style.transform=`translateY(${(p-.5)*-4}%) scale(${1.14-p*.1})`;});
+    ticking=false;
   }
-  const cdD=document.getElementById('cdD'),cdH=document.getElementById('cdH'),cdM=document.getElementById('cdM'),cdS=document.getElementById('cdS');
+  addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
+  addEventListener('resize',upd);upd();
+
+  /* Gallery photos */
+  document.querySelectorAll('.ph[data-photo]').forEach(f=>{const img=new Image();
+    img.onload=()=>{f.style.backgroundImage=`url("${f.dataset.photo}")`;f.classList.add('has-photo');};img.src=f.dataset.photo;});
+
+  /* RSVP -> WhatsApp */
+  document.getElementById('rsvpForm').addEventListener('submit',e=>{e.preventDefault();
+    const msg=`Full Name: ${document.getElementById('rName').value.trim()}\nNo. of People: ${document.getElementById('rCount').value}`;
+    window.open('https://wa.me/918009539099?text='+encodeURIComponent(msg),'_blank');});
+
+  /* Countdown */
+  const target=new Date('2026-12-11T19:00:00+05:30').getTime(),pad=v=>String(v).padStart(2,'0');
+  const D=document.getElementById('cdD'),H=document.getElementById('cdH'),M=document.getElementById('cdM'),S=document.getElementById('cdS');
+  function tick(){let d=Math.max(0,target-Date.now());
+    D.textContent=pad(Math.floor(d/864e5));d%=864e5;H.textContent=pad(Math.floor(d/36e5));d%=36e5;
+    M.textContent=pad(Math.floor(d/6e4));d%=6e4;S.textContent=pad(Math.floor(d/1e3));}
   tick();setInterval(tick,1000);
 })();
 </script>
